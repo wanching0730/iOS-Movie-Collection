@@ -36,7 +36,13 @@
                             <outlet property="delegate" destination="R4y-bV-4Qr" id="mbL-SP-0U6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Movies" id="8OW-Oe-gmi"/>
+                    <navigationItem key="navigationItem" title="Movies" id="8OW-Oe-gmi">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="D1U-AP-7jw">
+                            <connections>
+                                <segue destination="Hw5-sx-3Bb" kind="show" id="UcZ-wl-l7C"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AsC-mH-q9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -121,7 +127,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mission Impossible" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUK-vE-oQ2">
-                                <rect key="frame" x="66" y="69" width="267" height="71"/>
+                                <rect key="frame" x="66" y="111" width="267" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <color key="textColor" red="0.16487175215221947" green="0.0" blue="0.75505990932642486" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -232,6 +238,9 @@
                         <color key="backgroundColor" red="0.97351334649999999" green="1" blue="0.83392182960000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="UlK-ng-so2"/>
                     </view>
+                    <navigationItem key="navigationItem" id="XMy-lR-c6e">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="P1b-3U-5ai"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JEM-Bf-Wcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -326,10 +335,13 @@
                         <color key="backgroundColor" red="0.97351334649999999" green="1" blue="0.83392182960000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="de1-zv-4QE"/>
                     </view>
+                    <navigationItem key="navigationItem" id="oLN-Pv-DCo">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="6qR-03-UQM"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FE9-Q7-vPb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="350" y="-615"/>
+            <point key="canvasLocation" x="689" y="-591"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="V6M-tJ-azz">
