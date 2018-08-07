@@ -17,16 +17,20 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     
+    let dateFormatter = DateFormatter()
+    
     var selectedMovie: CinemaMovie!
     
     override func viewDidLoad() {
+        
+        dateFormatter.dateFormat = "MMM dd, yyyy"
         
         if let movie = selectedMovie {
             idLabel.text = "\(movie.id)"
             titleLabel.text = movie.title
             categoryLabel.text = movie.category
             directorLabel.text = movie.director
-            dateLabel.text = "\(movie.releaseDate)"
+            dateLabel.text = "\(dateFormatter.string(from: movie.releaseDate))"
             ratingLabel.text = "\(movie.rating)"
         }
         

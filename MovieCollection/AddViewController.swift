@@ -37,6 +37,7 @@ class AddViewController: UIViewController {
         let now = Date()
         datePicker.setDate(now, animated: true)
         
+        
         setupDropDown()
         dropDowns.forEach { $0.width = 120 }
         dropDowns.forEach { $0.dismissMode = .onTap }
