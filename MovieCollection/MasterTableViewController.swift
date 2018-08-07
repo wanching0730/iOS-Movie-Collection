@@ -11,6 +11,7 @@ import UIKit
 class MasterTableViewController: UITableViewController {
     
     var movies = [CinemaMovie]()
+    var newMovie = CinemaMovie!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,10 +56,17 @@ class MasterTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let indexPath = tableView.indexPathForSelectedRow {
-            let detailVC = segue.destination as! DetailViewController
-            detailVC.selectedMovie = movies[indexPath.row]
+        if let identifier = segue.identifier {
+            if identifier == "toDetail" {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    let detailVC = segue.destination as! DetailViewController
+                    detailVC.selectedMovie = movies[indexPath.row]
+                }
+            } else {
+                newMovie = nil
+            }
         }
+        
     }
     
 }

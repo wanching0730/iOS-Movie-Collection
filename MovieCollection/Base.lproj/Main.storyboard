@@ -390,7 +390,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="categoryButton" destination="HXR-N6-faf" id="GSE-8f-uNZ"/>
+                        <outlet property="datePicker" destination="qTN-zc-ZIS" id="XYw-DR-JGZ"/>
+                        <outlet property="directorField" destination="Unv-FR-XnH" id="HcN-y9-Agl"/>
+                        <outlet property="idField" destination="Jk6-AS-PIs" id="0Cr-2Q-Dia"/>
                         <outlet property="ratingButton" destination="bFH-J4-GM2" id="SHA-Lo-87O"/>
+                        <outlet property="titleField" destination="NhR-cV-Srd" id="pri-gj-pSi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FE9-Q7-vPb" userLabel="First Responder" sceneMemberID="firstResponder"/>
