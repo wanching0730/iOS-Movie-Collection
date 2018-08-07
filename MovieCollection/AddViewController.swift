@@ -29,7 +29,6 @@ class AddViewController: UIViewController {
         dropDowns.forEach { $0.width = 120 }
         dropDowns.forEach { $0.dismissMode = .onTap }
         dropDowns.forEach { $0.direction = .bottom }
-        
     }
     
     
