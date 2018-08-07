@@ -28,6 +28,28 @@ class MasterTableViewController: UITableViewController {
         
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return movies.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell: UITableViewCell!
+        
+        cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell")
+        
+        if cell == nil {
+            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "MovieCell")
+        }
+        
+        cell!.textLabel!.text = movies[indexPath.row].title
+        
+        return cell!
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let indexPath = tableView.indexPathForSelectedRow {
             let detailVC = segue.destination as! DetailViewController
