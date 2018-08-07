@@ -28,4 +28,11 @@ class MasterTableViewController: UITableViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let indexPath = tableView.indexPathForSelectedRow {
+            let detailVC = segue.destination as! DetailViewController
+            detailVC.selectedMovie = movies[indexPath.row]
+        }
+    }
+    
 }
