@@ -31,7 +31,6 @@ class AddViewController: UIViewController {
         dropDowns.forEach { $0.direction = .bottom }
     }
     
-    
     @IBAction func selectCategoryPressed(_ sender: UIButton) {
         categoryDropDown.show()
     }
@@ -52,9 +51,7 @@ class AddViewController: UIViewController {
         categoryDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             self.categoryButton.setTitle(item, for: .normal)
             print("Selected category: \(item) at index: \(index)")
-            
         }
-
     }
     
     func setupRatingDropDown() {
@@ -64,9 +61,7 @@ class AddViewController: UIViewController {
         ratingDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             self.ratingButton.setTitle(item, for: .normal)
             print("Selected rating: \(item) at index: \(index)")
-            
         }
-
     }
 }
 
