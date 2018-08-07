@@ -27,7 +27,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="pzj-Fq-zWF"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="toDetail" id="pzj-Fq-zWF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -39,7 +39,7 @@
                     <navigationItem key="navigationItem" title="Movies" id="8OW-Oe-gmi">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="D1U-AP-7jw">
                             <connections>
-                                <segue destination="Hw5-sx-3Bb" kind="show" id="UcZ-wl-l7C"/>
+                                <segue destination="Hw5-sx-3Bb" kind="show" identifier="toAdd" id="UcZ-wl-l7C"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -147,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="688.79999999999995" y="132.68365817091455"/>
+            <point key="canvasLocation" x="711" y="133"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="BcB-jR-ghn">
