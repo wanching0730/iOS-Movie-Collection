@@ -334,13 +334,6 @@
                                     <!--2018-07-31 07:53:18 +0000-->
                                 </date>
                             </datePicker>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QAD-Al-D9f">
-                                <rect key="frame" x="199" y="282" width="160" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1kv-HP-JKq">
                                 <rect key="frame" x="199" y="543" width="160" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -355,6 +348,14 @@
                                 <color key="textColor" red="0.1648717522" green="0.0" blue="0.7550599093" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXR-N6-faf">
+                                <rect key="frame" x="199" y="287" width="110" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Select Category"/>
+                                <connections>
+                                    <action selector="selectCategoryPressed:" destination="Hw5-sx-3Bb" eventType="touchUpInside" id="y8u-0X-zQu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.97351334649999999" green="1" blue="0.83392182960000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="de1-zv-4QE"/>
@@ -362,10 +363,13 @@
                     <navigationItem key="navigationItem" id="oLN-Pv-DCo">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="6qR-03-UQM"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="categoryButton" destination="HXR-N6-faf" id="GSE-8f-uNZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FE9-Q7-vPb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="710" y="-591"/>
+            <point key="canvasLocation" x="709.60000000000002" y="-591.45427286356824"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="V6M-tJ-azz">
