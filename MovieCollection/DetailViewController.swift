@@ -11,6 +11,7 @@ import UIKit
 class DetailViewController: UIViewController {
     
     @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var directorLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -22,6 +23,7 @@ class DetailViewController: UIViewController {
         
         if let movie = selectedMovie {
             idLabel.text = "\(movie.id)"
+            titleLabel.text = movie.title
             categoryLabel.text = movie.category
             directorLabel.text = movie.director
             dateLabel.text = "\(movie.releaseDate)"

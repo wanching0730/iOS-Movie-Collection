@@ -42,10 +42,14 @@ class MasterTableViewController: UITableViewController {
         cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell")
         
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "MovieCell")
+            cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "MovieCell")
         }
         
+        let image = UIImage(named: "starBlue")
+        
+        cell!.imageView?.image = image
         cell!.textLabel!.text = movies[indexPath.row].title
+        cell!.detailTextLabel?.text = movies[indexPath.row].category
         
         return cell!
     }
