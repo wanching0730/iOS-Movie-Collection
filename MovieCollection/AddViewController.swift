@@ -84,10 +84,10 @@ class AddViewController: UIViewController {
             let title = titleField.text!
             let director = directorField.text!
             newMovie = CinemaMovie(id: id, title: title, category: category, director: director, releaseDate: datePicker.date, rating: rating)!
+            
+            let masterVC = segue.destination as! MasterTableViewController
+            masterVC.newMovie = newMovie
         }
-        
-        let masterVC = segue.destination as! MasterTableViewController
-        masterVC.newMovie = newMovie
     }
 }
 

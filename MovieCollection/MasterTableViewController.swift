@@ -11,7 +11,7 @@ import UIKit
 class MasterTableViewController: UITableViewController {
     
     var movies = [CinemaMovie]()
-    var newMovie = CinemaMovie!
+    var newMovie = CinemaMovie(id: 0, title: "", category: "", director: "", releaseDate: Date(), rating: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
