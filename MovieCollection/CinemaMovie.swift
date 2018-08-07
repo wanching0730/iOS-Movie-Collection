@@ -18,8 +18,7 @@ class CinemaMovie {
     
     init?(id: Int, title: String, category: String, director: String, releaseDate: Date, rating: Int) {
         
-        if id == nil || title == nil || category == nil || director == nil || releaseDate == nil
-            || rating == nil {
+        if id == 0 || title.isEmpty || category.isEmpty || director.isEmpty || rating == 0 {
             return nil
         }
         
