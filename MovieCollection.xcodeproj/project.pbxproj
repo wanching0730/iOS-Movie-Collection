@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3068369A2119F76800CE9EB8 /* CinemaMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306836992119F76800CE9EB8 /* CinemaMovie.swift */; };
 		30D1EEAD210C721A00014C2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D1EEAC210C721A00014C2F /* AppDelegate.swift */; };
 		30D1EEAF210C721A00014C2F /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D1EEAE210C721A00014C2F /* AddViewController.swift */; };
 		30D1EEB2210C721A00014C2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30D1EEB0210C721A00014C2F /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		306836992119F76800CE9EB8 /* CinemaMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaMovie.swift; sourceTree = "<group>"; };
 		30D1EEA9210C721A00014C2F /* MovieCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30D1EEAC210C721A00014C2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30D1EEAE210C721A00014C2F /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				30D64E712119F32B0088E483 /* MasterTableViewController.swift */,
 				30D64E732119F3500088E483 /* DetailViewController.swift */,
 				30D64E752119F3670088E483 /* EditViewController.swift */,
+				306836992119F76800CE9EB8 /* CinemaMovie.swift */,
 			);
 			path = MovieCollection;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3068369A2119F76800CE9EB8 /* CinemaMovie.swift in Sources */,
 				30D1EEB5210C721A00014C2F /* MovieCollection.xcdatamodeld in Sources */,
 				30D64E722119F32B0088E483 /* MasterTableViewController.swift in Sources */,
 				30D64E762119F3670088E483 /* EditViewController.swift in Sources */,
