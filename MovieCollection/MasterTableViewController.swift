@@ -69,4 +69,13 @@ class MasterTableViewController: UITableViewController {
         
     }
     
+    @IBAction func returnFromAdd(segue: UIStoryboardSegue) {
+        if newMovie != nil {
+            movies.append(newMovie!)
+        }
+        
+        let indexPath = IndexPath(row: movies.count - 1, section: 0)
+        tableView.insertRows(at: [indexPath], with: .automatic)
+    }
+    
 }
