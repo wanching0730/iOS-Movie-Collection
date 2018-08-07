@@ -40,7 +40,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AsC-mH-q9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-204" y="132.68365817091455"/>
+            <point key="canvasLocation" x="-182" y="134"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -131,6 +131,13 @@
                         <color key="backgroundColor" red="0.97351334646483068" green="1" blue="0.83392182964449135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Hhs-cm-N07">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="3vh-yd-B0Z">
+                            <connections>
+                                <segue destination="UDO-oZ-8MR" kind="show" id="lqH-rF-JUO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
