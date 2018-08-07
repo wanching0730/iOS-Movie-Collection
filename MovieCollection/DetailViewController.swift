@@ -10,9 +10,24 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var directorLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
+    
+    var selectedMovie: CinemaMovie!
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        if let movie = selectedMovie {
+            idLabel.text = "\(movie.id)"
+            categoryLabel.text = movie.category
+            directorLabel.text = movie.director
+            dateLabel.text = "\(movie.releaseDate)"
+            ratingLabel.text = "\(movie.rating)"
+        }
+        
     }
     
 }
