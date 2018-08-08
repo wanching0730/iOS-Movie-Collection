@@ -106,11 +106,11 @@ class MasterTableViewController: UITableViewController {
     }
     
     func reloadData() {
-        //movies = movies.sorted(by: {($0.title?.lowercased())! < ($1.title?.lowercased())!})
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movie")
         do {
             movies = try managedContext.fetch(fetchRequest) as! [Movie]
+            movies = movies.sorted(by: {($0.title?.lowercased())! < ($1.title?.lowercased())!})
         } catch {
             print("Status: Could not retrieve data")
         }
