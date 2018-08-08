@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class MasterTableViewController: UITableViewController {
     
@@ -23,8 +24,7 @@ class MasterTableViewController: UITableViewController {
         if let movie2 = CinemaMovie(id: NSUUID() as UUID, title: "Polis Story", category: "Action", director: "Jackie Chan", releaseDate: Date(), rating: 5, colour: UIColor.randomFlat.hexValue()) {
             movies.append(movie2)
         }
-        if let movie3 = CinemaMovie(id: NSUUID() as UUID, title: "Anabelle", category: "Horror", director: "Lilly", releaseDate: Date(),
-            rating: 4){
+        if let movie3 = CinemaMovie(id: NSUUID() as UUID, title: "Anabelle", category: "Horror", director: "Lilly", releaseDate: Date(), rating: 4, colour: UIColor.randomFlat.hexValue()){
             movies.append(movie3)
         }
         
@@ -57,11 +57,21 @@ class MasterTableViewController: UITableViewController {
             cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "MovieCell")
         }
         
+        let movie = movies[indexPath.row]
         let image = UIImage(named: "starBlue")
+        //guard let movieColour = UIColor(hexString: movie.colour) else {fatalError()}
         
         cell!.imageView?.image = image
-        cell!.textLabel!.text = movies[indexPath.row].title
-        cell!.detailTextLabel?.text = movies[indexPath.row].category
+        cell!.textLabel!.text = movie.title
+        cell!.detailTextLabel?.text = movie.category
+        
+        if let colour = UIColor(hexString: "#ff7373")?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(movies.count)) {
+            cell.backgroundColor = colour
+            cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
+        }
+        
+//        cell!.backgroundColor = movieColour
+//        cell.textLabel?.textColor = ContrastColorOf(movieColour, returnFlat: true)
         
         return cell!
     }

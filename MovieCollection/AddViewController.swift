@@ -81,7 +81,7 @@ class AddViewController: UIViewController {
         var newMovie: CinemaMovie
         
         // Usage of UUID is to ensure every movie ID is unique
-        newMovie = CinemaMovie(id: NSUUID() as UUID, title: titleField.text!, category: category, director: directorField.text!, releaseDate: datePicker.date, rating: rating)!
+        newMovie = CinemaMovie(id: NSUUID() as UUID, title: titleField.text!, category: category, director: directorField.text!, releaseDate: datePicker.date, rating: rating, colour: UIColor.randomFlat.hexValue())!
         
         let masterVC = segue.destination as! MasterTableViewController
         masterVC.newMovie = newMovie
