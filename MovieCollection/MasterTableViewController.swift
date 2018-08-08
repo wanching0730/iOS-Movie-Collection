@@ -12,19 +12,19 @@ import ChameleonFramework
 class MasterTableViewController: UITableViewController {
     
     var movies = [CinemaMovie]()
-    var newMovie = CinemaMovie(id: NSUUID() as UUID, title: "", category: "", director: "", releaseDate: Date(), rating: 0, colour: UIColor.randomFlat.hexValue())
+    var newMovie = CinemaMovie(id: NSUUID() as UUID, title: "", category: "", director: "", releaseDate: Date(), rating: 0)
     
     var selectedMovie: CinemaMovie!
     var selectedMovieIndex: Int = 0
     
     override func viewDidLoad() {
-        if let movie1 = CinemaMovie(id: NSUUID() as UUID, title: "Mission Impossible", category: "Action", director: "Johnson", releaseDate: Date(), rating: 5, colour: UIColor.randomFlat.hexValue()) {
+        if let movie1 = CinemaMovie(id: NSUUID() as UUID, title: "Mission Impossible", category: "Action", director: "Johnson", releaseDate: Date(), rating: 5) {
             movies.append(movie1)
         }
-        if let movie2 = CinemaMovie(id: NSUUID() as UUID, title: "Polis Story", category: "Action", director: "Jackie Chan", releaseDate: Date(), rating: 5, colour: UIColor.randomFlat.hexValue()) {
+        if let movie2 = CinemaMovie(id: NSUUID() as UUID, title: "Polis Story", category: "Action", director: "Jackie Chan", releaseDate: Date(), rating: 5) {
             movies.append(movie2)
         }
-        if let movie3 = CinemaMovie(id: NSUUID() as UUID, title: "Anabelle", category: "Horror", director: "Lilly", releaseDate: Date(), rating: 4, colour: UIColor.randomFlat.hexValue()){
+        if let movie3 = CinemaMovie(id: NSUUID() as UUID, title: "Anabelle", category: "Horror", director: "Lilly", releaseDate: Date(), rating: 4){
             movies.append(movie3)
         }
         
@@ -59,7 +59,6 @@ class MasterTableViewController: UITableViewController {
         
         let movie = movies[indexPath.row]
         let image = UIImage(named: "starBlue")
-        //guard let movieColour = UIColor(hexString: movie.colour) else {fatalError()}
         
         cell!.imageView?.image = image
         cell!.textLabel!.text = movie.title
@@ -69,9 +68,6 @@ class MasterTableViewController: UITableViewController {
             cell.backgroundColor = colour
             cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
         }
-        
-//        cell!.backgroundColor = movieColour
-//        cell.textLabel?.textColor = ContrastColorOf(movieColour, returnFlat: true)
         
         return cell!
     }
