@@ -34,17 +34,8 @@ class MasterTableViewController: UITableViewController {
         appDelegate = delegate
         managedContext = appDelegate.persistentContainer.viewContext
 
+        reloadData()
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movie")
-        do {
-            movies = try managedContext.fetch(fetchRequest) as! [Movie]
-        } catch {
-            print("Status: Could not retrieve data")
-        }
-        
-        for movie in movies {
-            print(movie.title!)
-        }
         
 //
 //        if let movie1 = CinemaMovie(id: NSUUID() as UUID, title: "Mission Impossible", category: "Action", director: "Johnson", releaseDate: Date(), rating: 5, watched: true) {
@@ -115,7 +106,18 @@ class MasterTableViewController: UITableViewController {
     }
     
     func reloadData() {
-        movies = movies.sorted(by: {($0.title?.lowercased())! < ($1.title?.lowercased())!})
+        //movies = movies.sorted(by: {($0.title?.lowercased())! < ($1.title?.lowercased())!})
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movie")
+        do {
+            movies = try managedContext.fetch(fetchRequest) as! [Movie]
+        } catch {
+            print("Status: Could not retrieve data")
+        }
+        
+        for movie in movies {
+            print(movie.title!)
+        }
         tableView.reloadData()
     }
     
@@ -138,12 +140,14 @@ class MasterTableViewController: UITableViewController {
     }
     
     @IBAction func returnFromAdd(segue: UIStoryboardSegue) {
-        if newMovie != nil {
-            movies.append(newMovie!)
-        }
+//        if newMovie != nil {
+//            movies.append(newMovie!)
+//        }
         
-        let indexPath = IndexPath(row: movies.count - 1, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
+//        let indexPath = IndexPath(row: movies.count - 1, section: 0)
+//        tableView.insertRows(at: [indexPath], with: .automatic)
+        
+        reloadData()
     }
     
 }

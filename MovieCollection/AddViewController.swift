@@ -118,8 +118,8 @@ class AddViewController: UIViewController {
             print("Status: Could not save data")
         }
         
-        let masterVC = segue.destination as! MasterTableViewController
-//        masterVC.newMovie = CinemaMovie(id: id, title: title, category: category, director: director, releaseDate: releaseDate, rating: rating, watched: watched)!
+//        let masterVC = segue.destination as! MasterTableViewController
+//        masterVC.newMovie = movie
         
     }
     
