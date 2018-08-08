@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     
     let dateFormatter = DateFormatter()
     
-    var selectedMovie: CinemaMovie!
+    var selectedMovie: Movie!
     
     override func viewDidLoad() {
         
@@ -33,7 +33,7 @@ class DetailViewController: UIViewController {
             titleLabel.text = movie.title
             categoryLabel.text = movie.category
             directorLabel.text = movie.director
-            dateLabel.text = "\(dateFormatter.string(from: movie.releaseDate))"
+            dateLabel.text = "\(dateFormatter.string(from: movie.releaseDate!))"
             ratingLabel.text = "\(movie.rating)"
             
             if movie.watched {

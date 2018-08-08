@@ -8,30 +8,54 @@
 
 import UIKit
 import ChameleonFramework
+import CoreData
 
 class MasterTableViewController: UITableViewController {
     
-    var movies = [CinemaMovie]()
+    var movies = [Movie]()
 //    var newMovie = CinemaMovie(id: NSUUID() as UUID, title: "", category: "", director: "", releaseDate: Date(), rating: 0, watched: false)
-    var selectedMovie: CinemaMovie!
+    var selectedMovie: Movie!
     var selectedMovieIndex: Int = 0
     
-    var newMovie: CinemaMovie? {
+    var newMovie: Movie? {
         didSet {
             reloadData()
         }
     }
     
+    var appDelegate: AppDelegate!
+    var managedContext: NSManagedObjectContext!
+    
     override func viewDidLoad() {
-        if let movie1 = CinemaMovie(id: NSUUID() as UUID, title: "Mission Impossible", category: "Action", director: "Johnson", releaseDate: Date(), rating: 5, watched: true) {
-            movies.append(movie1)
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+            print("Status: Error in app")
+            return
         }
-        if let movie2 = CinemaMovie(id: NSUUID() as UUID, title: "Polis Story", category: "Action", director: "Jackie Chan", releaseDate: Date(), rating: 5, watched: false) {
-            movies.append(movie2)
+        appDelegate = delegate
+        managedContext = appDelegate.persistentContainer.viewContext
+
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movie")
+        do {
+            movies = try managedContext.fetch(fetchRequest) as! [Movie]
+        } catch {
+            print("Status: Could not retrieve data")
         }
-        if let movie3 = CinemaMovie(id: NSUUID() as UUID, title: "Anabelle", category: "Horror", director: "Lilly", releaseDate: Date(), rating: 4, watched: true){
-            movies.append(movie3)
+        
+        for movie in movies {
+            print(movie.title!)
         }
+        
+//
+//        if let movie1 = CinemaMovie(id: NSUUID() as UUID, title: "Mission Impossible", category: "Action", director: "Johnson", releaseDate: Date(), rating: 5, watched: true) {
+//            movies.append(movie1)
+//        }
+//        if let movie2 = CinemaMovie(id: NSUUID() as UUID, title: "Polis Story", category: "Action", director: "Jackie Chan", releaseDate: Date(), rating: 5, watched: false) {
+//            movies.append(movie2)
+//        }
+//        if let movie3 = CinemaMovie(id: NSUUID() as UUID, title: "Anabelle", category: "Horror", director: "Lilly", releaseDate: Date(), rating: 4, watched: true){
+//            movies.append(movie3)
+//        }
         
         navigationItem.leftBarButtonItem = editButtonItem
         
@@ -91,7 +115,7 @@ class MasterTableViewController: UITableViewController {
     }
     
     func reloadData() {
-        movies = movies.sorted(by: {$0.title.lowercased() < $1.title.lowercased()})
+        movies = movies.sorted(by: {($0.title?.lowercased())! < ($1.title?.lowercased())!})
         tableView.reloadData()
     }
     

@@ -34,7 +34,7 @@ class EditViewController: UIViewController {
         ]
     }()
     
-    var selectedMovie: CinemaMovie!
+    var selectedMovie: Movie!
     
     override func viewDidLoad() {
         setupDropDowns()
@@ -50,7 +50,7 @@ class EditViewController: UIViewController {
             categoryButton.setTitle(movie.category, for: .normal)
             ratingButton.setTitle("\(movie.rating)", for: .normal)
             
-            datePicker.setDate(movie.releaseDate, animated: true)
+            datePicker.setDate(movie.releaseDate!, animated: true)
             
             watchedSwitch.isOn = movie.watched
         }
@@ -101,10 +101,10 @@ class EditViewController: UIViewController {
         
         if rating == -1 {
             if let rating = Int(ratingButton.currentTitle!) {
-                selectedMovie.rating = rating
+                selectedMovie.rating = Int32(rating)
             }
         } else {
-            selectedMovie.rating = rating
+            selectedMovie.rating = Int32(rating)
         }
     
         selectedMovie.title = titleField.text!

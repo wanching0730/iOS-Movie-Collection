@@ -119,7 +119,7 @@ class AddViewController: UIViewController {
         }
         
         let masterVC = segue.destination as! MasterTableViewController
-        masterVC.newMovie = CinemaMovie(id: id, title: title, category: category, director: director, releaseDate: releaseDate, rating: rating, watched: watched)!
+//        masterVC.newMovie = CinemaMovie(id: id, title: title, category: category, director: director, releaseDate: releaseDate, rating: rating, watched: watched)!
         
     }
     
