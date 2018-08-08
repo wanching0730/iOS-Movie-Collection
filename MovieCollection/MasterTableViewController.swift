@@ -13,15 +13,8 @@ import CoreData
 class MasterTableViewController: UITableViewController {
     
     var movies = [Movie]()
-//    var newMovie = CinemaMovie(id: NSUUID() as UUID, title: "", category: "", director: "", releaseDate: Date(), rating: 0, watched: false)
     var selectedMovie: Movie!
     var selectedMovieIndex: Int = 0
-    
-    var newMovie: Movie? {
-        didSet {
-            reloadData()
-        }
-    }
     
     var appDelegate: AppDelegate!
     var managedContext: NSManagedObjectContext!
@@ -33,33 +26,28 @@ class MasterTableViewController: UITableViewController {
         }
         appDelegate = delegate
         managedContext = appDelegate.persistentContainer.viewContext
-
-        reloadData()
         
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movie")
+        do {
+            movies = try managedContext.fetch(fetchRequest) as! [Movie]
+            movies = movies.sorted(by: {($0.title?.lowercased())! < ($1.title?.lowercased())!})
+        } catch {
+            print("Status: Could not retrieve data")
+        }
         
-//
-//        if let movie1 = CinemaMovie(id: NSUUID() as UUID, title: "Mission Impossible", category: "Action", director: "Johnson", releaseDate: Date(), rating: 5, watched: true) {
-//            movies.append(movie1)
-//        }
-//        if let movie2 = CinemaMovie(id: NSUUID() as UUID, title: "Polis Story", category: "Action", director: "Jackie Chan", releaseDate: Date(), rating: 5, watched: false) {
-//            movies.append(movie2)
-//        }
-//        if let movie3 = CinemaMovie(id: NSUUID() as UUID, title: "Anabelle", category: "Horror", director: "Lilly", releaseDate: Date(), rating: 4, watched: true){
-//            movies.append(movie3)
-//        }
+        for movie in movies {
+            print(movie.title!)
+            print(movie.id!)
+        }
         
         navigationItem.leftBarButtonItem = editButtonItem
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if selectedMovie != nil {
-            movies[selectedMovieIndex] = selectedMovie!
-        }
-        
-        reloadData()
+        tableView.reloadData()
     }
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -105,50 +93,23 @@ class MasterTableViewController: UITableViewController {
         return true
     }
     
-    func reloadData() {
-        
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movie")
-        do {
-            movies = try managedContext.fetch(fetchRequest) as! [Movie]
-            movies = movies.sorted(by: {($0.title?.lowercased())! < ($1.title?.lowercased())!})
-        } catch {
-            print("Status: Could not retrieve data")
-        }
-        
-        for movie in movies {
-            print(movie.title!)
-            print(movie.id!)
-        }
-        tableView.reloadData()
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "toDetail" {
                 if let indexPath = tableView.indexPathForSelectedRow {
                     let detailVC = segue.destination as! DetailViewController
-                    selectedMovieIndex = indexPath.row
                     selectedMovie = movies[indexPath.row]
                     detailVC.selectedMovie = selectedMovie
                 }
-            } else {
-                newMovie = nil
             }
         }
         
-        reloadData()
+        tableView.reloadData()
         
     }
     
     @IBAction func returnFromAdd(segue: UIStoryboardSegue) {
-//        if newMovie != nil {
-//            movies.append(newMovie!)
-//        }
-        
-//        let indexPath = IndexPath(row: movies.count - 1, section: 0)
-//        tableView.insertRows(at: [indexPath], with: .automatic)
-        
-        reloadData()
+        tableView.reloadData()
     }
     
 }

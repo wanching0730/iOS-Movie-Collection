@@ -32,6 +32,7 @@ class EditViewController: UIViewController {
     var category: String = ""
     
     var foundMovie: Movie!
+    var selectedMovie: Movie!
     
     lazy var dropDowns: [DropDown] = {
         return [
@@ -39,8 +40,6 @@ class EditViewController: UIViewController {
             self.ratingDropDown
         ]
     }()
-    
-    var selectedMovie: Movie!
     
     override func viewDidLoad() {
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
