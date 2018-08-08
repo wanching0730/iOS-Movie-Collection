@@ -67,6 +67,7 @@ class MasterTableViewController: UITableViewController {
         if let colour = UIColor(hexString: "#ff7373")?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(movies.count)) {
             cell.backgroundColor = colour
             cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
+             cell.detailTextLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
         }
         
         return cell!
