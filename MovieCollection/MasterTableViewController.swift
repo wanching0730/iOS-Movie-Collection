@@ -117,6 +117,7 @@ class MasterTableViewController: UITableViewController {
         
         for movie in movies {
             print(movie.title!)
+            print(movie.id!)
         }
         tableView.reloadData()
     }

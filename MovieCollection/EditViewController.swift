@@ -8,6 +8,7 @@
 
 import UIKit
 import DropDown
+import CoreData
 
 class EditViewController: UIViewController {
     
@@ -21,11 +22,18 @@ class EditViewController: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    var appDelegate: AppDelegate!
+    var managedContext: NSManagedObjectContext!
+    
     let categoryDropDown = DropDown()
     let ratingDropDown = DropDown()
     
+    var mtitle: String = ""
     var category: String = ""
+    var director: String = ""
+    var releaseDate: Date = Date()
     var rating: Int = -1
+    var watched: Bool = false
     
     lazy var dropDowns: [DropDown] = {
         return [
@@ -37,6 +45,13 @@ class EditViewController: UIViewController {
     var selectedMovie: Movie!
     
     override func viewDidLoad() {
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+            print("Status: Error in app")
+            return
+        }
+        appDelegate = delegate
+        managedContext = appDelegate.persistentContainer.viewContext
+        
         setupDropDowns()
         
         dropDowns.forEach { $0.width = 120 }
@@ -92,6 +107,11 @@ class EditViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        mtitle = titleField.text!
+        director = directorField.text!
+        releaseDate = datePicker.date
+        watched = watchedSwitch.isOn
        
         if category.isEmpty {
             selectedMovie.category = categoryButton.currentTitle!
@@ -107,11 +127,52 @@ class EditViewController: UIViewController {
             selectedMovie.rating = Int32(rating)
         }
     
-        selectedMovie.title = titleField.text!
-        selectedMovie.director = directorField.text!
-        selectedMovie.releaseDate = datePicker.date
-        selectedMovie.watched = watchedSwitch.isOn
+        selectedMovie.title = mtitle
+        selectedMovie.director = director
+        selectedMovie.releaseDate = releaseDate
+        selectedMovie.watched = watched
         
+        updateDatabase()
+        
+    }
+    
+    func updateDatabase() {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Movie")
+        let searchCriteria = "id == '\(selectedMovie.id!)'"
+        print("selected movie id: \(selectedMovie.id!)")
+        
+        let predicate = NSPredicate(format: searchCriteria)
+        
+        fetchRequest.predicate = predicate
+        
+        do {
+            let movies = try managedContext.fetch(fetchRequest) as! [Movie]
+            
+            if !movies.isEmpty {
+                let foundMovie = movies[0]
+                
+                foundMovie.setValue(mtitle, forKey: "title")
+                foundMovie.setValue(category, forKey: "category")
+                foundMovie.setValue(director, forKey: "director")
+                foundMovie.setValue(releaseDate, forKey: "releaseDate")
+                foundMovie.setValue(rating, forKey: "rating")
+                foundMovie.setValue(watched, forKey: "watched")
+                
+                do {
+                    try managedContext.save()
+                    print("Status: Data updated")
+                } catch {
+                    print("Status: Could not update data")
+                }
+                
+                print("Status: Movie found")
+            } else {
+                print("Status: Movie not found")
+            }
+        } catch {
+            print("Status: could not retrieve searched data")
+        }
+
     }
     
 }
