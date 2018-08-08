@@ -50,8 +50,9 @@ class EditViewController: UIViewController {
             
             categoryButton.setTitle(movie.category, for: .normal)
             ratingButton.setTitle("\(movie.rating)", for: .normal)
+            
+            datePicker.setDate(movie.releaseDate, animated: true)
         }
-       
     }
     
     
@@ -88,6 +89,19 @@ class EditViewController: UIViewController {
             self.ratingButton.setTitle(item, for: .normal)
             self.rating = Int(item)!
             print("Selected rating: \(item) at index: \(index)")
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let id = Int(idField.text!) {
+            selectedMovie.id = id
+            selectedMovie.title = titleField.text!
+            selectedMovie.category = category
+            selectedMovie.director = directorField.text!
+            selectedMovie.releaseDate = datePicker.date
+            selectedMovie.rating = rating
+        } else {
+            return
         }
     }
     
