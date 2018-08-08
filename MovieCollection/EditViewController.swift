@@ -26,7 +26,7 @@ class EditViewController: UIViewController {
     var category: String = ""
     var rating: Int = 0
     
-    let movieCategories: [String: Int] = ["Action":0, "Comedy": 1, "Horror": 2, "Romance": 3]
+    //let movieCategories: [Int: String] = [0: "Action", 1: "Comedy", 2: "Horror", 3: "Romance"]
     
     lazy var dropDowns: [DropDown] = {
         return [
@@ -48,10 +48,8 @@ class EditViewController: UIViewController {
             titleField.text = movie.title
             directorField.text = movie.director
             
-            categoryDropDown.selectRow(movieCategories[movie.category]!)
-            print(movieCategories[movie.category]!)
-            print(movie.rating - 1)
-            ratingDropDown.selectRow(movie.rating - 1)
+            categoryButton.setTitle(movie.category, for: .normal)
+            ratingButton.setTitle("\(movie.rating)", for: .normal)
         }
        
     }
@@ -74,7 +72,7 @@ class EditViewController: UIViewController {
     func setupCategoryDropDown() {
         categoryDropDown.anchorView = categoryButton
         categoryDropDown.bottomOffset = CGPoint(x: 0, y: categoryButton.bounds.height)
-        categoryDropDown.dataSource = [String](movieCategories.keys)
+        categoryDropDown.dataSource = ["Action", "Comedy", "Horror", "Romance"]
         categoryDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             self.categoryButton.setTitle(item, for: .normal)
             self.category = item
