@@ -13,6 +13,9 @@ class MasterTableViewController: UITableViewController {
     var movies = [CinemaMovie]()
     var newMovie = CinemaMovie(id: 0, title: "", category: "", director: "", releaseDate: Date(), rating: 0)
     
+    var selectedMovie: CinemaMovie!
+    var selectedMovieIndex: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,6 +30,14 @@ class MasterTableViewController: UITableViewController {
             movies.append(movie3)
         }
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if selectedMovie != nil {
+            movies[selectedMovieIndex] = selectedMovie!
+        }
+        
+        tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -60,7 +71,9 @@ class MasterTableViewController: UITableViewController {
             if identifier == "toDetail" {
                 if let indexPath = tableView.indexPathForSelectedRow {
                     let detailVC = segue.destination as! DetailViewController
-                    detailVC.selectedMovie = movies[indexPath.row]
+                    selectedMovieIndex = indexPath.row
+                    selectedMovie = movies[indexPath.row]
+                    detailVC.selectedMovie = selectedMovie
                 }
             } else {
                 newMovie = nil
