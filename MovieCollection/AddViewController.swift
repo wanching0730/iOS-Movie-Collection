@@ -37,7 +37,6 @@ class AddViewController: UIViewController {
         let now = Date()
         datePicker.setDate(now, animated: true)
         
-        
         setupDropDown()
         dropDowns.forEach { $0.width = 120 }
         dropDowns.forEach { $0.dismissMode = .onTap }
@@ -81,13 +80,36 @@ class AddViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         var newMovie: CinemaMovie
+        
         if let id =  Int(idField.text!) {
-            let title = titleField.text!
-            let director = directorField.text!
-            newMovie = CinemaMovie(id: id, title: title, category: category, director: director, releaseDate: datePicker.date, rating: rating)!
+            newMovie = CinemaMovie(id: id, title: titleField.text!, category: category, director: directorField.text!, releaseDate: datePicker.date, rating: rating)!
             
             let masterVC = segue.destination as! MasterTableViewController
             masterVC.newMovie = newMovie
+        }
+        
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if titleField.text!.isEmpty || directorField.text!.isEmpty  || category.isEmpty || rating == 0 {
+            let alertController = UIAlertController (
+                title: "Empty Field",
+                message: "Please fill in all fields before proceed",
+                preferredStyle: UIAlertControllerStyle.alert
+            )
+            
+            let cancelAction = UIAlertAction (
+                title: "Cancel",
+                style: UIAlertActionStyle.cancel,
+                handler: nil
+            )
+            
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+            return false
+        } else {
+            return true
         }
     }
 }
