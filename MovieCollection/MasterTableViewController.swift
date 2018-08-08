@@ -17,8 +17,6 @@ class MasterTableViewController: UITableViewController {
     var selectedMovieIndex: Int = 0
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
         if let movie1 = CinemaMovie(id: NSUUID() as UUID, title: "Mission Impossible", category: "Action", director: "Johnson", releaseDate: Date(), rating: 5) {
             movies.append(movie1)
         }
@@ -29,6 +27,8 @@ class MasterTableViewController: UITableViewController {
             rating: 4){
             movies.append(movie3)
         }
+        
+        navigationItem.leftBarButtonItem = editButtonItem
         
     }
     
@@ -64,6 +64,17 @@ class MasterTableViewController: UITableViewController {
         cell!.detailTextLabel?.text = movies[indexPath.row].category
         
         return cell!
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            movies.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath as IndexPath], with: .fade)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
