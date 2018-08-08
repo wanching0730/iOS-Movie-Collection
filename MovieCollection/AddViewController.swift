@@ -38,7 +38,10 @@ class AddViewController: UIViewController {
         let now = Date()
         datePicker.setDate(now, animated: true)
         
-        setupDropDown()
+        watchedSwitch.setOn(false, animated: true)
+        
+        setupDropDowns()
+        
         dropDowns.forEach { $0.width = 120 }
         dropDowns.forEach { $0.dismissMode = .onTap }
         dropDowns.forEach { $0.direction = .bottom }
@@ -52,31 +55,29 @@ class AddViewController: UIViewController {
         ratingDropDown.show()
     }
     
-    func setupDropDown() {
-        setupCategoryDropDown()
-        setupRatingDropDown()
-    }
-    
-    func setupCategoryDropDown() {
-        categoryDropDown.anchorView = categoryButton
-        categoryDropDown.bottomOffset = CGPoint(x: 0, y: categoryButton.bounds.height)
-        categoryDropDown.dataSource = ["Action", "Comedy", "Horror", "Romance"]
-        categoryDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            self.categoryButton.setTitle(item, for: .normal)
-            self.category = item
-            print("Selected category: \(item) at index: \(index)")
+    func setupDropDown(_ dropdown: DropDown, _ button: UIButton, _ options: [String]) {
+        dropdown.anchorView = button
+        dropdown.bottomOffset = CGPoint(x: 0, y: button.bounds.height)
+        dropdown.dataSource = options
+        dropdown.selectionAction = { [unowned self] (index: Int, item: String) in
+            button.setTitle(item, for: .normal)
+            if button == self.categoryButton {
+                self.category = item
+                print("Selected category: \(item) at index: \(index)")
+            } else {
+                self.rating = Int(item)!
+                print("Selected rating: \(item) at index: \(index)")
+            }
+            
         }
     }
     
-    func setupRatingDropDown() {
-        ratingDropDown.anchorView = ratingButton
-        ratingDropDown.bottomOffset = CGPoint(x: 0, y: ratingButton.bounds.height)
-        ratingDropDown.dataSource = ["0", "1", "2", "3", "4", "5"]
-        ratingDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            self.ratingButton.setTitle(item, for: .normal)
-            self.rating = Int(item)!
-            print("Selected rating: \(item) at index: \(index)")
-        }
+    func setupDropDowns() {
+        let categories = ["Action", "Comedy", "Horror", "Romance"]
+        let ratings = ["0", "1", "2", "3", "4", "5"]
+        
+        setupDropDown(categoryDropDown, categoryButton, categories)
+        setupDropDown(ratingDropDown, ratingButton, ratings)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
