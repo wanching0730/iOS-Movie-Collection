@@ -20,25 +20,8 @@ class MasterTableViewController: UITableViewController {
     var managedContext: NSManagedObjectContext!
     
     override func viewDidLoad() {
-        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
-            print("Status: Error in app")
-            return
-        }
-        appDelegate = delegate
-        managedContext = appDelegate.persistentContainer.viewContext
-        
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movie")
-        do {
-            movies = try managedContext.fetch(fetchRequest) as! [Movie]
-            movies = movies.sorted(by: {($0.title?.lowercased())! < ($1.title?.lowercased())!})
-        } catch {
-            print("Status: Could not retrieve data")
-        }
-        
-        for movie in movies {
-            print(movie.title!)
-            print(movie.id!)
-        }
+        setupContext()
+        fetchData()
         
         navigationItem.leftBarButtonItem = editButtonItem
         
@@ -117,6 +100,26 @@ class MasterTableViewController: UITableViewController {
         return true
     }
     
+    func setupContext() {
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+            print("Status: Error in app")
+            return
+        }
+        appDelegate = delegate
+        managedContext = appDelegate.persistentContainer.viewContext
+    }
+    
+    func fetchData() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Movie")
+        
+        do {
+            movies = try managedContext.fetch(fetchRequest) as! [Movie]
+            movies = movies.sorted(by: {($0.title?.lowercased())! < ($1.title?.lowercased())!})
+        } catch {
+            print("Status: Could not retrieve data")
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "toDetail" {
@@ -129,7 +132,6 @@ class MasterTableViewController: UITableViewController {
         }
         
         tableView.reloadData()
-        
     }
     
     @IBAction func returnFromAdd(segue: UIStoryboardSegue) {
