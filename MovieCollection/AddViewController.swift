@@ -8,6 +8,7 @@
 
 import UIKit
 import DropDown
+import CoreData
 
 class AddViewController: UIViewController {
 
@@ -20,6 +21,9 @@ class AddViewController: UIViewController {
     
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var ratingButton: UIButton!
+    
+    var appDelegate: AppDelegate!
+    var managedContext: NSManagedObjectContext!
     
     let categoryDropDown = DropDown()
     let ratingDropDown = DropDown()
@@ -35,6 +39,13 @@ class AddViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+            print("Status: Error in app")
+            return
+        }
+        appDelegate = delegate
+        managedContext = appDelegate.persistentContainer.viewContext
+        
         let now = Date()
         datePicker.setDate(now, animated: true)
         
