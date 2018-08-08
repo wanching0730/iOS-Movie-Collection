@@ -135,6 +135,13 @@
                                 <color key="textColor" red="0.5047114921271818" green="0.012343758909172609" blue="0.75505990932642486" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Watched" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZF-GI-j44">
+                                <rect key="frame" x="106" y="567" width="162" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.010022954369773046" green="0.63611156088082899" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.97351334646483068" green="1" blue="0.83392182964449135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -152,6 +159,7 @@
                         <outlet property="directorLabel" destination="kvo-Db-Luv" id="WG0-cS-geE"/>
                         <outlet property="ratingLabel" destination="e7I-cP-BH0" id="a4y-gQ-rZL"/>
                         <outlet property="titleLabel" destination="SUK-vE-oQ2" id="mrJ-VK-Tev"/>
+                        <outlet property="watchedLabel" destination="AZF-GI-j44" id="lQ0-aS-Naf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -15,6 +15,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var directorLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var watchedLabel: UILabel!
     
     let dateFormatter = DateFormatter()
     
@@ -30,6 +31,14 @@ class DetailViewController: UIViewController {
             directorLabel.text = movie.director
             dateLabel.text = "\(dateFormatter.string(from: movie.releaseDate))"
             ratingLabel.text = "\(movie.rating)"
+            
+            if movie.watched {
+                watchedLabel.text = "Watched"
+                watchedLabel.textColor = UIColor.flatGreenDark
+            } else {
+                watchedLabel.text = "Unwatched"
+                watchedLabel.textColor = UIColor.red
+            }
         }
         
     }
@@ -45,6 +54,14 @@ class DetailViewController: UIViewController {
         directorLabel.text = selectedMovie.director
         dateLabel.text = "\(dateFormatter.string(from: selectedMovie.releaseDate))"
         ratingLabel.text = "\(selectedMovie.rating)"
+        
+        if selectedMovie.watched {
+            watchedLabel.text = "Watched"
+            watchedLabel.textColor = UIColor.flatGreenDark
+        } else {
+            watchedLabel.text = "Unwatched"
+            watchedLabel.textColor = UIColor.red
+        }
     }
     
 }
