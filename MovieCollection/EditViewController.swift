@@ -11,7 +11,6 @@ import DropDown
 
 class EditViewController: UIViewController {
     
-    @IBOutlet weak var idField: UITextField!
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var directorField: UITextField!
     
@@ -44,7 +43,6 @@ class EditViewController: UIViewController {
         dropDowns.forEach { $0.direction = .bottom }
         
         if let movie = selectedMovie {
-            idField.text = "\(movie.id)"
             titleField.text = movie.title
             directorField.text = movie.director
             

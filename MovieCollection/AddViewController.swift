@@ -11,7 +11,6 @@ import DropDown
 
 class AddViewController: UIViewController {
 
-    @IBOutlet weak var idField: UITextField!
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var directorField: UITextField!
     

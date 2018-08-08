@@ -10,7 +10,6 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    @IBOutlet weak var idLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var directorLabel: UILabel!
@@ -26,7 +25,6 @@ class DetailViewController: UIViewController {
         dateFormatter.dateFormat = "MMM dd, yyyy"
         
         if let movie = selectedMovie {
-            idLabel.text = "\(movie.id)"
             titleLabel.text = movie.title
             categoryLabel.text = movie.category
             directorLabel.text = movie.director
@@ -42,7 +40,6 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func returnFromEdit(segue: UIStoryboardSegue) {
-        idLabel.text = "\(selectedMovie.id)"
         titleLabel.text = selectedMovie.title
         categoryLabel.text = selectedMovie.category
         directorLabel.text = selectedMovie.director
