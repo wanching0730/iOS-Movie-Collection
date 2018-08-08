@@ -25,6 +25,10 @@ class DetailViewController: UIViewController {
         
         dateFormatter.dateFormat = "MMM dd, yyyy"
         
+        setUpInterface()
+    }
+    
+    func setUpInterface() {
         if let movie = selectedMovie {
             titleLabel.text = movie.title
             categoryLabel.text = movie.category
@@ -40,7 +44,6 @@ class DetailViewController: UIViewController {
                 watchedLabel.textColor = UIColor.red
             }
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -49,19 +52,7 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func returnFromEdit(segue: UIStoryboardSegue) {
-        titleLabel.text = selectedMovie.title
-        categoryLabel.text = selectedMovie.category
-        directorLabel.text = selectedMovie.director
-        dateLabel.text = "\(dateFormatter.string(from: selectedMovie.releaseDate))"
-        ratingLabel.text = "\(selectedMovie.rating)"
-        
-        if selectedMovie.watched {
-            watchedLabel.text = "Watched"
-            watchedLabel.textColor = UIColor.flatGreenDark
-        } else {
-            watchedLabel.text = "Unwatched"
-            watchedLabel.textColor = UIColor.red
-        }
+        setUpInterface()
     }
     
 }
