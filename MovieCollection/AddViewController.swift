@@ -81,7 +81,7 @@ class AddViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         var newMovie: CinemaMovie
         
-       
+        // Usage of UUID is to ensure every movie ID is unique
         newMovie = CinemaMovie(id: NSUUID() as UUID, title: titleField.text!, category: category, director: directorField.text!, releaseDate: datePicker.date, rating: rating)!
         
         let masterVC = segue.destination as! MasterTableViewController

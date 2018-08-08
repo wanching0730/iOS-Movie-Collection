@@ -112,7 +112,6 @@ class EditViewController: UIViewController {
         selectedMovie.director = directorField.text!
         selectedMovie.releaseDate = datePicker.date
         
-        
     }
     
 }
