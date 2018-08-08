@@ -93,13 +93,33 @@ class AddViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        var newMovie: CinemaMovie
+       
+        let id = NSUUID() as UUID
+        let title = titleField.text!
+        let director = directorField.text!
+        let releaseDate = datePicker.date
+        let watched = watchedSwitch.isOn
         
-        // Usage of UUID is to ensure every movie ID is unique
-        newMovie = CinemaMovie(id: NSUUID() as UUID, title: titleField.text!, category: category, director: directorField.text!, releaseDate: datePicker.date, rating: rating, watched: watchedSwitch.isOn)!
+        let entity = NSEntityDescription.entity(forEntityName: "Movie", in: managedContext)!
+        let movie = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        movie.setValue(id, forKey: "id")
+        movie.setValue(title, forKey: "title")
+        movie.setValue(category, forKey: "category")
+        movie.setValue(director, forKey: "director")
+        movie.setValue(releaseDate, forKey: "releaseDate")
+        movie.setValue(rating, forKey: "rating")
+        movie.setValue(watched, forKey: "watched")
+        
+        do {
+            try managedContext.save()
+            print("Status: Data saved")
+        } catch {
+            print("Status: Could not save data")
+        }
         
         let masterVC = segue.destination as! MasterTableViewController
-        masterVC.newMovie = newMovie
+        masterVC.newMovie = CinemaMovie(id: id, title: title, category: category, director: director, releaseDate: releaseDate, rating: rating, watched: watched)!
         
     }
     
