@@ -81,12 +81,11 @@ class AddViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         var newMovie: CinemaMovie
         
-        if let id =  Int(idField.text!) {
-            newMovie = CinemaMovie(id: id, title: titleField.text!, category: category, director: directorField.text!, releaseDate: datePicker.date, rating: rating)!
-            
-            let masterVC = segue.destination as! MasterTableViewController
-            masterVC.newMovie = newMovie
-        }
+       
+        newMovie = CinemaMovie(id: NSUUID() as UUID, title: titleField.text!, category: category, director: directorField.text!, releaseDate: datePicker.date, rating: rating)!
+        
+        let masterVC = segue.destination as! MasterTableViewController
+        masterVC.newMovie = newMovie
         
     }
     

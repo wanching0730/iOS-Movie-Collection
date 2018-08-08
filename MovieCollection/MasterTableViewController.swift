@@ -11,7 +11,7 @@ import UIKit
 class MasterTableViewController: UITableViewController {
     
     var movies = [CinemaMovie]()
-    var newMovie = CinemaMovie(id: 0, title: "", category: "", director: "", releaseDate: Date(), rating: 0)
+    var newMovie = CinemaMovie(id: NSUUID() as UUID, title: "", category: "", director: "", releaseDate: Date(), rating: 0)
     
     var selectedMovie: CinemaMovie!
     var selectedMovieIndex: Int = 0
@@ -19,13 +19,13 @@ class MasterTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let movie1 = CinemaMovie(id: 1, title: "Mission Impossible", category: "Action", director: "Johnson", releaseDate: Date(), rating: 5) {
+        if let movie1 = CinemaMovie(id: NSUUID() as UUID, title: "Mission Impossible", category: "Action", director: "Johnson", releaseDate: Date(), rating: 5) {
             movies.append(movie1)
         }
-        if let movie2 = CinemaMovie(id: 2, title: "Polis Story", category: "Action", director: "Jackie Chan", releaseDate: Date(), rating: 5) {
+        if let movie2 = CinemaMovie(id: NSUUID() as UUID, title: "Polis Story", category: "Action", director: "Jackie Chan", releaseDate: Date(), rating: 5) {
             movies.append(movie2)
         }
-        if let movie3 = CinemaMovie(id: 3, title: "Anabelle", category: "Horror", director: "Lilly", releaseDate: Date(),
+        if let movie3 = CinemaMovie(id: NSUUID() as UUID, title: "Anabelle", category: "Horror", director: "Lilly", releaseDate: Date(),
             rating: 4){
             movies.append(movie3)
         }
