@@ -42,19 +42,29 @@ class EditViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
+        setupContext()
+        setupDropDowns()
+        updateUI()
+    }
+    
+    @IBAction func selectCategoryPressed(_ sender: UIButton) {
+        categoryDropDown.show()
+    }
+    
+    @IBAction func selectRatingPressed(_ sender: UIButton) {
+        ratingDropDown.show()
+    }
+    
+    func setupContext() {
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
             print("Status: Error in app")
             return
         }
         appDelegate = delegate
         managedContext = appDelegate.persistentContainer.viewContext
-        
-        setupDropDowns()
-        
-        dropDowns.forEach { $0.width = 120 }
-        dropDowns.forEach { $0.dismissMode = .onTap }
-        dropDowns.forEach { $0.direction = .bottom }
-        
+    }
+    
+    func updateUI() {
         if let movie = selectedMovie {
             titleField.text = movie.title
             directorField.text = movie.director
@@ -66,15 +76,6 @@ class EditViewController: UIViewController {
             
             watchedSwitch.isOn = movie.watched
         }
-    }
-    
-    
-    @IBAction func selectCategoryPressed(_ sender: UIButton) {
-        categoryDropDown.show()
-    }
-    
-    @IBAction func selectRatingPressed(_ sender: UIButton) {
-        ratingDropDown.show()
     }
     
     func setupDropDown(_ dropdown: DropDown, _ button: UIButton, _ options: [String]) {
@@ -96,17 +97,15 @@ class EditViewController: UIViewController {
     }
     
     func setupDropDowns() {
+        dropDowns.forEach { $0.width = 120 }
+        dropDowns.forEach { $0.dismissMode = .onTap }
+        dropDowns.forEach { $0.direction = .bottom }
+        
         let categories = ["Action", "Comedy", "Horror", "Romance"]
         let ratings = ["0", "1", "2", "3", "4", "5"]
         
         setupDropDown(categoryDropDown, categoryButton, categories)
         setupDropDown(ratingDropDown, ratingButton, ratings)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        searchMovie()
-        updateDatabase()
-        selectedMovie = foundMovie
     }
     
     func searchMovie() {
@@ -153,6 +152,12 @@ class EditViewController: UIViewController {
         } catch {
             print("Status: Could not update movie")
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        searchMovie()
+        updateDatabase()
+        selectedMovie = foundMovie
     }
     
 }
