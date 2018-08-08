@@ -65,18 +65,18 @@ class MasterTableViewController: UITableViewController {
         let movie = movies[indexPath.row]
         let image = UIImage(named: "starBlue")
         
-        cell!.imageView?.image = image
-        cell!.textLabel!.text = movie.title
-        cell!.detailTextLabel?.text = movie.category
-        cell!.accessoryType = movie.watched ? .checkmark : .none
+        cell.imageView?.image = image
+        cell.textLabel!.text = movie.title
+        cell.detailTextLabel?.text = movie.category
+        cell.accessoryType = movie.watched ? .checkmark : .none
         
         if let colour = UIColor(hexString: "#ff7373")?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(movies.count)) {
             cell.backgroundColor = colour
             cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
-             cell.detailTextLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
+            cell.detailTextLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
         }
         
-        return cell!
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

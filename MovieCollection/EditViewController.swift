@@ -61,7 +61,6 @@ class EditViewController: UIViewController {
         categoryDropDown.show()
     }
     
-    
     @IBAction func selectRatingPressed(_ sender: UIButton) {
         ratingDropDown.show()
     }
@@ -72,6 +71,7 @@ class EditViewController: UIViewController {
         dropdown.dataSource = options
         dropdown.selectionAction = { [unowned self] (index: Int, item: String) in
             button.setTitle(item, for: .normal)
+            
             if button == self.categoryButton {
                 self.category = item
                 print("Selected category: \(item) at index: \(index)")

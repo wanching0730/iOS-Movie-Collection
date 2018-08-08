@@ -61,6 +61,7 @@ class AddViewController: UIViewController {
         dropdown.dataSource = options
         dropdown.selectionAction = { [unowned self] (index: Int, item: String) in
             button.setTitle(item, for: .normal)
+            
             if button == self.categoryButton {
                 self.category = item
                 print("Selected category: \(item) at index: \(index)")
@@ -94,7 +95,7 @@ class AddViewController: UIViewController {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if titleField.text!.isEmpty || directorField.text!.isEmpty  || category.isEmpty || rating == -1 {
             let alertController = UIAlertController (
-                title: "Empty Field",
+                title: "Invalid Submission",
                 message: "Please complete all fields before proceed",
                 preferredStyle: UIAlertControllerStyle.alert
             )
