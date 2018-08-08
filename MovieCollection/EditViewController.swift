@@ -28,12 +28,10 @@ class EditViewController: UIViewController {
     let categoryDropDown = DropDown()
     let ratingDropDown = DropDown()
     
-    var mtitle: String = ""
-    var category: String = ""
-    var director: String = ""
-    var releaseDate: Date = Date()
     var rating: Int = -1
-    var watched: Bool = false
+    var category: String = ""
+    
+    var foundMovie: Movie!
     
     lazy var dropDowns: [DropDown] = {
         return [
@@ -107,33 +105,8 @@ class EditViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        mtitle = titleField.text!
-        director = directorField.text!
-        releaseDate = datePicker.date
-        watched = watchedSwitch.isOn
-       
-        if category.isEmpty {
-            selectedMovie.category = categoryButton.currentTitle!
-        } else {
-            selectedMovie.category = category
-        }
-        
-        if rating == -1 {
-            if let rating = Int(ratingButton.currentTitle!) {
-                selectedMovie.rating = Int32(rating)
-            }
-        } else {
-            selectedMovie.rating = Int32(rating)
-        }
-    
-        selectedMovie.title = mtitle
-        selectedMovie.director = director
-        selectedMovie.releaseDate = releaseDate
-        selectedMovie.watched = watched
-        
         updateDatabase()
-        
+        selectedMovie = foundMovie
     }
     
     func updateDatabase() {
@@ -144,14 +117,26 @@ class EditViewController: UIViewController {
             let movies = try managedContext.fetch(fetchRequest) as! [Movie]
             
             if !movies.isEmpty {
-                let foundMovie = movies[0]
+                foundMovie = movies[0]
                 
-                foundMovie.setValue(mtitle, forKey: "title")
-                foundMovie.setValue(category, forKey: "category")
-                foundMovie.setValue(director, forKey: "director")
-                foundMovie.setValue(releaseDate, forKey: "releaseDate")
-                foundMovie.setValue(rating, forKey: "rating")
-                foundMovie.setValue(watched, forKey: "watched")
+                foundMovie.setValue(titleField.text!, forKey: "title")
+                foundMovie.setValue(directorField.text!, forKey: "director")
+                foundMovie.setValue(datePicker.date, forKey: "releaseDate")
+                foundMovie.setValue(watchedSwitch.isOn, forKey: "watched")
+                
+                if category.isEmpty {
+                    foundMovie.setValue(categoryButton.currentTitle!, forKey: "category")
+                } else {
+                    foundMovie.setValue(category, forKey: "category")
+                }
+                
+                if rating == -1 {
+                    if let rating = Int32(ratingButton.currentTitle!) {
+                        foundMovie.setValue(rating, forKey: "rating")
+                    }
+                } else {
+                    foundMovie.setValue(Int32(rating), forKey: "rating")
+                }
                 
                 do {
                     try managedContext.save()
