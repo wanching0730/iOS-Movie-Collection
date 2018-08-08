@@ -84,8 +84,32 @@ class MasterTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            movies.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath as IndexPath], with: .fade)
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Movie")
+            fetchRequest.predicate = NSPredicate(format: "%K == %@", "id", movies[indexPath.row].id! as CVarArg)
+            
+            do {
+                let movies = try managedContext.fetch(fetchRequest) as! [Movie]
+                
+                if !movies.isEmpty {
+                    let foundMovie = movies[0]
+                    managedContext.delete(foundMovie as NSManagedObject)
+                    self.movies.remove(at: indexPath.row)
+                    
+                    do {
+                        try managedContext.save()
+                        print("Status: Movie deleted")
+                    } catch {
+                        print("Status: Could not delete movie")
+                    }
+                    
+                    self.tableView.deleteRows(at: [indexPath], with: .fade)
+                    print("Status: Movie found")
+                } else {
+                    print("Status: Movie not found")
+                }
+            } catch {
+                print("Status: could not retrieve searched data")
+            }
         }
     }
     
