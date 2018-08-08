@@ -28,6 +28,7 @@ class MasterTableViewController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        fetchData()
         tableView.reloadData()
     }
 
