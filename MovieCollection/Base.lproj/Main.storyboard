@@ -165,7 +165,7 @@
                         <outlet property="dateLabel" destination="dIj-GU-bzO" id="2Ow-zf-W2B"/>
                         <outlet property="directorLabel" destination="kvo-Db-Luv" id="WG0-cS-geE"/>
                         <outlet property="idLabel" destination="Qep-Ap-5sc" id="aQb-W3-A71"/>
-                        <outlet property="ratingLabel" destination="Pnf-C2-t4U" id="Br8-Ce-N0z"/>
+                        <outlet property="ratingLabel" destination="e7I-cP-BH0" id="a4y-gQ-rZL"/>
                         <outlet property="titleLabel" destination="SUK-vE-oQ2" id="mrJ-VK-Tev"/>
                     </connections>
                 </viewController>
@@ -262,11 +262,17 @@
                                 <rect key="frame" x="184" y="592" width="91" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Select Rating"/>
+                                <connections>
+                                    <action selector="selectRatingPressed:" destination="UDO-oZ-8MR" eventType="touchUpInside" id="Yrl-za-4E9"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6t-RE-JHI">
                                 <rect key="frame" x="184" y="302" width="110" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Select Category"/>
+                                <connections>
+                                    <action selector="selectCategoryPressed:" destination="UDO-oZ-8MR" eventType="touchUpInside" id="C6q-Za-BWd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.97351334649999999" green="1" blue="0.83392182960000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -275,6 +281,14 @@
                     <navigationItem key="navigationItem" id="XMy-lR-c6e">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="P1b-3U-5ai"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="categoryButton" destination="s6t-RE-JHI" id="V3H-G8-bSm"/>
+                        <outlet property="datePicker" destination="HLO-Vh-Ke4" id="6vH-9A-5E6"/>
+                        <outlet property="directorField" destination="Dsh-Re-OHv" id="oNU-57-Ps3"/>
+                        <outlet property="idField" destination="8QG-uj-0C9" id="bLQ-4P-K79"/>
+                        <outlet property="ratingButton" destination="xGb-sy-ilR" id="Scp-TX-JvT"/>
+                        <outlet property="titleField" destination="U9s-Jt-HIh" id="Ham-Wc-G3c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JEM-Bf-Wcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
