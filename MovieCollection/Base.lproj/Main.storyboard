@@ -279,7 +279,11 @@
                         <viewLayoutGuide key="safeArea" id="UlK-ng-so2"/>
                     </view>
                     <navigationItem key="navigationItem" id="XMy-lR-c6e">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="P1b-3U-5ai"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="P1b-3U-5ai">
+                            <connections>
+                                <segue destination="j5m-V2-4ia" kind="unwind" unwindAction="returnFromEditWithSegue:" id="4u3-i8-rNB"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="categoryButton" destination="s6t-RE-JHI" id="V3H-G8-bSm"/>
@@ -291,6 +295,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JEM-Bf-Wcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="j5m-V2-4ia" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1592.8" y="132.68365817091455"/>
         </scene>

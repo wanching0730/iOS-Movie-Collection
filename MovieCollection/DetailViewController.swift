@@ -41,4 +41,13 @@ class DetailViewController: UIViewController {
         editVC.selectedMovie = selectedMovie
     }
     
+    @IBAction func returnFromEdit(segue: UIStoryboardSegue) {
+        idLabel.text = "\(selectedMovie.id)"
+        titleLabel.text = selectedMovie.title
+        categoryLabel.text = selectedMovie.category
+        directorLabel.text = selectedMovie.director
+        dateLabel.text = "\(dateFormatter.string(from: selectedMovie.releaseDate))"
+        ratingLabel.text = "\(selectedMovie.rating)"
+    }
+    
 }
