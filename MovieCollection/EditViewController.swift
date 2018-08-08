@@ -94,12 +94,25 @@ class EditViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let id = Int(idField.text!) {
+            if category.isEmpty {
+                selectedMovie.category = categoryButton.currentTitle!
+            } else {
+                selectedMovie.category = category
+            }
+            
+            if rating == 0 {
+                if let rating = Int(ratingButton.currentTitle!) {
+                    selectedMovie.rating = rating
+                }
+            } else {
+                selectedMovie.rating = rating
+            }
+            
             selectedMovie.id = id
             selectedMovie.title = titleField.text!
-            selectedMovie.category = category
             selectedMovie.director = directorField.text!
             selectedMovie.releaseDate = datePicker.date
-            selectedMovie.rating = rating
+            
         } else {
             return
         }
