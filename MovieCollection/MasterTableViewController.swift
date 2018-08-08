@@ -12,10 +12,15 @@ import ChameleonFramework
 class MasterTableViewController: UITableViewController {
     
     var movies = [CinemaMovie]()
-    var newMovie = CinemaMovie(id: NSUUID() as UUID, title: "", category: "", director: "", releaseDate: Date(), rating: 0, watched: false)
-    
+//    var newMovie = CinemaMovie(id: NSUUID() as UUID, title: "", category: "", director: "", releaseDate: Date(), rating: 0, watched: false)
     var selectedMovie: CinemaMovie!
     var selectedMovieIndex: Int = 0
+    
+    var newMovie: CinemaMovie? {
+        didSet {
+            reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         if let movie1 = CinemaMovie(id: NSUUID() as UUID, title: "Mission Impossible", category: "Action", director: "Johnson", releaseDate: Date(), rating: 5, watched: true) {
@@ -37,8 +42,7 @@ class MasterTableViewController: UITableViewController {
             movies[selectedMovieIndex] = selectedMovie!
         }
         
-        movies.sort(){ $0.title < $1.title }
-        tableView.reloadData()
+        reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -86,6 +90,11 @@ class MasterTableViewController: UITableViewController {
         return true
     }
     
+    func reloadData() {
+        movies = movies.sorted(by: {$0.title.lowercased() < $1.title.lowercased()})
+        tableView.reloadData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "toDetail" {
@@ -99,6 +108,8 @@ class MasterTableViewController: UITableViewController {
                 newMovie = nil
             }
         }
+        
+        reloadData()
         
     }
     
