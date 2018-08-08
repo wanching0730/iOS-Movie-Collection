@@ -37,6 +37,7 @@ class MasterTableViewController: UITableViewController {
             movies[selectedMovieIndex] = selectedMovie!
         }
         
+        movies.sort(){ $0.title < $1.title }
         tableView.reloadData()
     }
     
