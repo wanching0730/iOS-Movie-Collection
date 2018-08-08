@@ -104,11 +104,12 @@ class EditViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        searchMovie()
         updateDatabase()
         selectedMovie = foundMovie
     }
     
-    func updateDatabase() {
+    func searchMovie() {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Movie")
         fetchRequest.predicate = NSPredicate(format: "%K == %@", "id", selectedMovie.id! as CVarArg)
         
@@ -117,33 +118,6 @@ class EditViewController: UIViewController {
             
             if !movies.isEmpty {
                 foundMovie = movies[0]
-                
-                foundMovie.setValue(titleField.text!, forKey: "title")
-                foundMovie.setValue(directorField.text!, forKey: "director")
-                foundMovie.setValue(datePicker.date, forKey: "releaseDate")
-                foundMovie.setValue(watchedSwitch.isOn, forKey: "watched")
-                
-                if category.isEmpty {
-                    foundMovie.setValue(categoryButton.currentTitle!, forKey: "category")
-                } else {
-                    foundMovie.setValue(category, forKey: "category")
-                }
-                
-                if rating == -1 {
-                    if let rating = Int32(ratingButton.currentTitle!) {
-                        foundMovie.setValue(rating, forKey: "rating")
-                    }
-                } else {
-                    foundMovie.setValue(Int32(rating), forKey: "rating")
-                }
-                
-                do {
-                    try managedContext.save()
-                    print("Status: Data updated")
-                } catch {
-                    print("Status: Could not update data")
-                }
-                
                 print("Status: Movie found")
             } else {
                 print("Status: Movie not found")
@@ -151,7 +125,34 @@ class EditViewController: UIViewController {
         } catch {
             print("Status: could not retrieve searched data")
         }
-
+    }
+    
+    func updateDatabase() {
+        foundMovie.setValue(titleField.text!, forKey: "title")
+        foundMovie.setValue(directorField.text!, forKey: "director")
+        foundMovie.setValue(datePicker.date, forKey: "releaseDate")
+        foundMovie.setValue(watchedSwitch.isOn, forKey: "watched")
+        
+        if category.isEmpty {
+            foundMovie.setValue(categoryButton.currentTitle!, forKey: "category")
+        } else {
+            foundMovie.setValue(category, forKey: "category")
+        }
+        
+        if rating == -1 {
+            if let rating = Int32(ratingButton.currentTitle!) {
+                foundMovie.setValue(rating, forKey: "rating")
+            }
+        } else {
+            foundMovie.setValue(Int32(rating), forKey: "rating")
+        }
+        
+        do {
+            try managedContext.save()
+            print("Status: Movie updated")
+        } catch {
+            print("Status: Could not update movie")
+        }
     }
     
 }
