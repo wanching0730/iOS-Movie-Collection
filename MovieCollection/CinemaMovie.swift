@@ -19,7 +19,7 @@ class CinemaMovie {
     
     init?(id: UUID, title: String, category: String, director: String, releaseDate: Date, rating: Int, watched: Bool) {
         
-        if title.isEmpty || category.isEmpty || director.isEmpty || rating == 0 {
+        if title.isEmpty || category.isEmpty || director.isEmpty || rating == -1 {
             return nil
         }
         

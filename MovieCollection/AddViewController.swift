@@ -25,7 +25,7 @@ class AddViewController: UIViewController {
     let ratingDropDown = DropDown()
     
     var category: String = ""
-    var rating: Int = 0
+    var rating: Int = -1
     
     lazy var dropDowns: [DropDown] = {
         return [
@@ -71,7 +71,7 @@ class AddViewController: UIViewController {
     func setupRatingDropDown() {
         ratingDropDown.anchorView = ratingButton
         ratingDropDown.bottomOffset = CGPoint(x: 0, y: ratingButton.bounds.height)
-        ratingDropDown.dataSource = ["1", "2", "3", "4", "5"]
+        ratingDropDown.dataSource = ["0", "1", "2", "3", "4", "5"]
         ratingDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             self.ratingButton.setTitle(item, for: .normal)
             self.rating = Int(item)!
@@ -91,10 +91,10 @@ class AddViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if titleField.text!.isEmpty || directorField.text!.isEmpty  || category.isEmpty || rating == 0 {
+        if titleField.text!.isEmpty || directorField.text!.isEmpty  || category.isEmpty || rating == -1 {
             let alertController = UIAlertController (
                 title: "Empty Field",
-                message: "Please fill in all fields before proceed",
+                message: "Please complete all fields before proceed",
                 preferredStyle: UIAlertControllerStyle.alert
             )
             

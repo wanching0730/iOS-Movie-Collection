@@ -25,7 +25,7 @@ class EditViewController: UIViewController {
     let ratingDropDown = DropDown()
     
     var category: String = ""
-    var rating: Int = 0
+    var rating: Int = -1
     
     //let movieCategories: [Int: String] = [0: "Action", 1: "Comedy", 2: "Horror", 3: "Romance"]
     
@@ -86,7 +86,7 @@ class EditViewController: UIViewController {
     func setupRatingDropDown() {
         ratingDropDown.anchorView = ratingButton
         ratingDropDown.bottomOffset = CGPoint(x: 0, y: ratingButton.bounds.height)
-        ratingDropDown.dataSource = ["1", "2", "3", "4", "5"]
+        ratingDropDown.dataSource = ["0", "1", "2", "3", "4", "5"]
         ratingDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             self.ratingButton.setTitle(item, for: .normal)
             self.rating = Int(item)!
@@ -102,7 +102,7 @@ class EditViewController: UIViewController {
             selectedMovie.category = category
         }
         
-        if rating == 0 {
+        if rating == -1 {
             if let rating = Int(ratingButton.currentTitle!) {
                 selectedMovie.rating = rating
             }
