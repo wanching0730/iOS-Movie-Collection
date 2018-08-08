@@ -15,8 +15,9 @@ class CinemaMovie {
     var director: String
     var releaseDate: Date
     var rating: Int
+    var watched: Bool
     
-    init?(id: UUID, title: String, category: String, director: String, releaseDate: Date, rating: Int) {
+    init?(id: UUID, title: String, category: String, director: String, releaseDate: Date, rating: Int, watched: Bool) {
         
         if title.isEmpty || category.isEmpty || director.isEmpty || rating == 0 {
             return nil
@@ -28,5 +29,6 @@ class CinemaMovie {
         self.director = director
         self.releaseDate = releaseDate
         self.rating = rating
+        self.watched = watched
     }
 }

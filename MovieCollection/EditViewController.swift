@@ -17,6 +17,8 @@ class EditViewController: UIViewController {
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var ratingButton: UIButton!
     
+    @IBOutlet weak var watchedSwitch: UISwitch!
+    
     @IBOutlet weak var datePicker: UIDatePicker!
     
     let categoryDropDown = DropDown()
@@ -50,6 +52,8 @@ class EditViewController: UIViewController {
             ratingButton.setTitle("\(movie.rating)", for: .normal)
             
             datePicker.setDate(movie.releaseDate, animated: true)
+            
+            watchedSwitch.isOn = movie.watched
         }
     }
     
@@ -109,6 +113,7 @@ class EditViewController: UIViewController {
         selectedMovie.title = titleField.text!
         selectedMovie.director = directorField.text!
         selectedMovie.releaseDate = datePicker.date
+        selectedMovie.watched = watchedSwitch.isOn
         
     }
     

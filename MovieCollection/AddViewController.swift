@@ -16,6 +16,8 @@ class AddViewController: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    @IBOutlet weak var watchedSwitch: UISwitch!
+    
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var ratingButton: UIButton!
     
@@ -81,7 +83,7 @@ class AddViewController: UIViewController {
         var newMovie: CinemaMovie
         
         // Usage of UUID is to ensure every movie ID is unique
-        newMovie = CinemaMovie(id: NSUUID() as UUID, title: titleField.text!, category: category, director: directorField.text!, releaseDate: datePicker.date, rating: rating)!
+        newMovie = CinemaMovie(id: NSUUID() as UUID, title: titleField.text!, category: category, director: directorField.text!, releaseDate: datePicker.date, rating: rating, watched: watchedSwitch.isOn)!
         
         let masterVC = segue.destination as! MasterTableViewController
         masterVC.newMovie = newMovie

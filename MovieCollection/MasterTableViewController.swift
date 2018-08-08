@@ -12,19 +12,19 @@ import ChameleonFramework
 class MasterTableViewController: UITableViewController {
     
     var movies = [CinemaMovie]()
-    var newMovie = CinemaMovie(id: NSUUID() as UUID, title: "", category: "", director: "", releaseDate: Date(), rating: 0)
+    var newMovie = CinemaMovie(id: NSUUID() as UUID, title: "", category: "", director: "", releaseDate: Date(), rating: 0, watched: false)
     
     var selectedMovie: CinemaMovie!
     var selectedMovieIndex: Int = 0
     
     override func viewDidLoad() {
-        if let movie1 = CinemaMovie(id: NSUUID() as UUID, title: "Mission Impossible", category: "Action", director: "Johnson", releaseDate: Date(), rating: 5) {
+        if let movie1 = CinemaMovie(id: NSUUID() as UUID, title: "Mission Impossible", category: "Action", director: "Johnson", releaseDate: Date(), rating: 5, watched: true) {
             movies.append(movie1)
         }
-        if let movie2 = CinemaMovie(id: NSUUID() as UUID, title: "Polis Story", category: "Action", director: "Jackie Chan", releaseDate: Date(), rating: 5) {
+        if let movie2 = CinemaMovie(id: NSUUID() as UUID, title: "Polis Story", category: "Action", director: "Jackie Chan", releaseDate: Date(), rating: 5, watched: false) {
             movies.append(movie2)
         }
-        if let movie3 = CinemaMovie(id: NSUUID() as UUID, title: "Anabelle", category: "Horror", director: "Lilly", releaseDate: Date(), rating: 4){
+        if let movie3 = CinemaMovie(id: NSUUID() as UUID, title: "Anabelle", category: "Horror", director: "Lilly", releaseDate: Date(), rating: 4, watched: true){
             movies.append(movie3)
         }
         
@@ -63,6 +63,7 @@ class MasterTableViewController: UITableViewController {
         cell!.imageView?.image = image
         cell!.textLabel!.text = movie.title
         cell!.detailTextLabel?.text = movie.category
+        cell!.accessoryType = movie.watched ? .checkmark : .none
         
         if let colour = UIColor(hexString: "#ff7373")?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(movies.count)) {
             cell.backgroundColor = colour

@@ -273,6 +273,7 @@
                         <outlet property="directorField" destination="Dsh-Re-OHv" id="oNU-57-Ps3"/>
                         <outlet property="ratingButton" destination="xGb-sy-ilR" id="Scp-TX-JvT"/>
                         <outlet property="titleField" destination="U9s-Jt-HIh" id="Ham-Wc-G3c"/>
+                        <outlet property="watchedSwitch" destination="gBX-zP-HMn" id="G1d-el-nCX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JEM-Bf-Wcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -395,6 +396,7 @@
                         <outlet property="directorField" destination="Unv-FR-XnH" id="HcN-y9-Agl"/>
                         <outlet property="ratingButton" destination="bFH-J4-GM2" id="SHA-Lo-87O"/>
                         <outlet property="titleField" destination="NhR-cV-Srd" id="pri-gj-pSi"/>
+                        <outlet property="watchedSwitch" destination="f5o-9c-1Yi" id="DIW-Ru-EtJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FE9-Q7-vPb" userLabel="First Responder" sceneMemberID="firstResponder"/>
