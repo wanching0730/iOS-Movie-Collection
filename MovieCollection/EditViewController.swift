@@ -138,12 +138,7 @@ class EditViewController: UIViewController {
     
     func updateDatabase() {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Movie")
-        let searchCriteria = "id == '\(selectedMovie.id!)'"
-        print("selected movie id: \(selectedMovie.id!)")
-        
-        let predicate = NSPredicate(format: searchCriteria)
-        
-        fetchRequest.predicate = predicate
+        fetchRequest.predicate = NSPredicate(format: "%K == %@", "id", selectedMovie.id! as CVarArg)
         
         do {
             let movies = try managedContext.fetch(fetchRequest) as! [Movie]
