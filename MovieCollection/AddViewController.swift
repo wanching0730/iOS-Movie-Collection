@@ -39,12 +39,7 @@ class AddViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
-            print("Status: Error in app")
-            return
-        }
-        appDelegate = delegate
-        managedContext = appDelegate.persistentContainer.viewContext
+        setupContext()
         
         let now = Date()
         datePicker.setDate(now, animated: true)
@@ -52,10 +47,6 @@ class AddViewController: UIViewController {
         watchedSwitch.setOn(false, animated: true)
         
         setupDropDowns()
-        
-        dropDowns.forEach { $0.width = 120 }
-        dropDowns.forEach { $0.dismissMode = .onTap }
-        dropDowns.forEach { $0.direction = .bottom }
     }
     
     @IBAction func selectCategoryPressed(_ sender: UIButton) {
@@ -64,6 +55,15 @@ class AddViewController: UIViewController {
     
     @IBAction func selectRatingPressed(_ sender: UIButton) {
         ratingDropDown.show()
+    }
+    
+    func setupContext() {
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+            print("Status: Error in app")
+            return
+        }
+        appDelegate = delegate
+        managedContext = appDelegate.persistentContainer.viewContext
     }
     
     func setupDropDown(_ dropdown: DropDown, _ button: UIButton, _ options: [String]) {
@@ -85,31 +85,28 @@ class AddViewController: UIViewController {
     }
     
     func setupDropDowns() {
+        dropDowns.forEach { $0.width = 120 }
+        dropDowns.forEach { $0.dismissMode = .onTap }
+        dropDowns.forEach { $0.direction = .bottom }
+        
         let categories = ["Action", "Comedy", "Horror", "Romance"]
         let ratings = ["0", "1", "2", "3", "4", "5"]
         
         setupDropDown(categoryDropDown, categoryButton, categories)
         setupDropDown(ratingDropDown, ratingButton, ratings)
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       
-        let id = NSUUID() as UUID
-        let title = titleField.text!
-        let director = directorField.text!
-        let releaseDate = datePicker.date
-        let watched = watchedSwitch.isOn
-        
         let entity = NSEntityDescription.entity(forEntityName: "Movie", in: managedContext)!
         let movie = NSManagedObject(entity: entity, insertInto: managedContext)
         
-        movie.setValue(id, forKey: "id")
-        movie.setValue(title, forKey: "title")
+        movie.setValue(NSUUID() as UUID, forKey: "id")
+        movie.setValue(titleField.text!, forKey: "title")
         movie.setValue(category, forKey: "category")
-        movie.setValue(director, forKey: "director")
-        movie.setValue(releaseDate, forKey: "releaseDate")
+        movie.setValue(directorField.text!, forKey: "director")
+        movie.setValue(datePicker.date, forKey: "releaseDate")
         movie.setValue(rating, forKey: "rating")
-        movie.setValue(watched, forKey: "watched")
+        movie.setValue(watchedSwitch.isOn, forKey: "watched")
         
         do {
             try managedContext.save()
@@ -117,10 +114,6 @@ class AddViewController: UIViewController {
         } catch {
             print("Status: Could not save data")
         }
-        
-//        let masterVC = segue.destination as! MasterTableViewController
-//        masterVC.newMovie = movie
-        
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
