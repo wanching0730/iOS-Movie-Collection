@@ -36,4 +36,9 @@ class DetailViewController: UIViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let editVC = segue.destination as! EditViewController
+        editVC.selectedMovie = selectedMovie
+    }
+    
 }

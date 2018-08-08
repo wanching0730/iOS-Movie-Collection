@@ -10,8 +10,12 @@ import UIKit
 
 class EditViewController: UIViewController {
     
+    var selectedMovie: CinemaMovie!
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
+        if let movie = selectedMovie {
+            
+        }
        
     }
     
