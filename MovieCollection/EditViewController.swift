@@ -69,6 +69,7 @@ class EditViewController: UIViewController {
         if let movie = selectedMovie {
             titleField.text = movie.title
             directorField.text = movie.director
+            posterField.text = movie.posterLink
             
             categoryButton.setTitle(movie.category, for: .normal)
             ratingButton.setTitle("\(movie.rating)", for: .normal)
@@ -130,6 +131,7 @@ class EditViewController: UIViewController {
     func updateDatabase() {
         foundMovie.setValue(titleField.text!, forKey: "title")
         foundMovie.setValue(directorField.text!, forKey: "director")
+        foundMovie.setValue(posterField.text!, forKey: "posterLink")
         foundMovie.setValue(datePicker.date, forKey: "releaseDate")
         foundMovie.setValue(watchedSwitch.isOn, forKey: "watched")
         
