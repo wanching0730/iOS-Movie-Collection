@@ -17,6 +17,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var watchedLabel: UILabel!
     
+    @IBOutlet weak var imageView: UIImageView!
+    
     let dateFormatter = DateFormatter()
     
     var selectedMovie: Movie!
@@ -26,6 +28,13 @@ class DetailViewController: UIViewController {
         dateFormatter.dateFormat = "MMM dd, yyyy"
         
         setUpInterface()
+        
+        print("Begin of code")
+        if let url = URL(string: "https://dx35vtwkllhj9.cloudfront.net/paramountpictures/missionimpossible-fallout/images/regions/us/onesheet.jpg") {
+            imageView.contentMode = .scaleAspectFit
+            downloadImage(url: url)
+        }
+        print("End of code. The image will continue downloading in the background and it will be loaded when it ends.")
     }
     
     func setUpInterface() {
@@ -42,6 +51,24 @@ class DetailViewController: UIViewController {
             } else {
                 watchedLabel.text = "Unwatched"
                 watchedLabel.textColor = UIColor.red
+            }
+        }
+    }
+    
+    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            completion(data, response, error)
+            }.resume()
+    }
+    
+    func downloadImage(url: URL) {
+        print("Download Started")
+        getDataFromUrl(url: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Download Finished")
+            DispatchQueue.main.async() {
+                self.imageView.image = UIImage(data: data)
             }
         }
     }
