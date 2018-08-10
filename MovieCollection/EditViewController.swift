@@ -17,7 +17,8 @@ class EditViewController: UIViewController {
     
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var cinemaButton: UIButton!
-    //@IBOutlet weak var ratingButton: UIButton!
+    
+    @IBOutlet weak var ratingSlider: UISlider!
     
     @IBOutlet weak var watchedSwitch: UISwitch!
     
@@ -31,6 +32,7 @@ class EditViewController: UIViewController {
     
     var category: String = ""
     var cinema: String = ""
+    var rating: Int = -1
     
     var foundMovie: Movie!
     var selectedMovie: Movie!
@@ -51,10 +53,13 @@ class EditViewController: UIViewController {
     @IBAction func selectCategoryPressed(_ sender: UIButton) {
         categoryDropDown.show()
     }
-    
 
     @IBAction func selectCinemaPressed(_ sender: UIButton) {
         cinemaDropDown.show()
+    }
+    
+    @IBAction func sliderChanged(_ sender: UISlider) {
+        rating = lroundf(sender.value)
     }
     
     func setupContext() {
@@ -75,6 +80,8 @@ class EditViewController: UIViewController {
             cinemaButton.setTitle(movie.cinema, for: .normal)
             
             datePicker.setDate(movie.releaseDate!, animated: true)
+            
+            ratingSlider.value = Float(movie.rating)
             
             watchedSwitch.isOn = movie.watched
         }
@@ -99,7 +106,7 @@ class EditViewController: UIViewController {
     }
     
     func setupDropDowns() {
-        dropDowns.forEach { $0.width = 120 }
+        dropDowns.forEach { $0.width = 140 }
         dropDowns.forEach { $0.dismissMode = .onTap }
         dropDowns.forEach { $0.direction = .bottom }
         
@@ -132,6 +139,7 @@ class EditViewController: UIViewController {
         foundMovie.setValue(titleField.text!, forKey: "title")
         foundMovie.setValue(directorField.text!, forKey: "director")
         foundMovie.setValue(datePicker.date, forKey: "releaseDate")
+        foundMovie.setValue(ratingSlider.value, forKey: "rating")
         foundMovie.setValue(watchedSwitch.isOn, forKey: "watched")
         
         if category.isEmpty {

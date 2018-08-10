@@ -21,7 +21,6 @@ class AddViewController: UIViewController {
     
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var cinemaButton: UIButton!
-    //@IBOutlet weak var ratingButton: UIButton!
     
     var appDelegate: AppDelegate!
     var managedContext: NSManagedObjectContext!
@@ -31,6 +30,7 @@ class AddViewController: UIViewController {
     
     var category: String = ""
     var cinema: String = ""
+    var rating: Int = -1
     
     lazy var dropDowns: [DropDown] = {
         return [
@@ -56,6 +56,11 @@ class AddViewController: UIViewController {
     
     @IBAction func selectCinemaPressed(_ sender: UIButton) {
         cinemaDropDown.show()
+    }
+    
+    @IBAction func sliderChanged(_ sender: UISlider) {
+        rating = lroundf(sender.value)
+        print("rating: \(rating)")
     }
     
     func setupContext() {
@@ -86,7 +91,7 @@ class AddViewController: UIViewController {
     }
     
     func setupDropDowns() {
-        dropDowns.forEach { $0.width = 120 }
+        dropDowns.forEach { $0.width = 140 }
         dropDowns.forEach { $0.dismissMode = .onTap }
         dropDowns.forEach { $0.direction = .bottom }
         
@@ -107,6 +112,7 @@ class AddViewController: UIViewController {
         movie.setValue(directorField.text!, forKey: "director")
         movie.setValue(datePicker.date, forKey: "releaseDate")
         movie.setValue(cinema, forKey: "cinema")
+        movie.setValue(rating, forKey: "rating")
         movie.setValue(watchedSwitch.isOn, forKey: "watched")
         
         do {
@@ -118,7 +124,7 @@ class AddViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if titleField.text!.isEmpty || directorField.text!.isEmpty  || category.isEmpty || cinema.isEmpty {
+        if titleField.text!.isEmpty || directorField.text!.isEmpty  || category.isEmpty || cinema.isEmpty || rating == -1 {
             let alertController = UIAlertController (
                 title: "Invalid Submission",
                 message: "Please complete all fields before proceed",

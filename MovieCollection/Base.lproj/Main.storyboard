@@ -291,9 +291,12 @@
                                     <action selector="selectCinemaPressed:" destination="UDO-oZ-8MR" eventType="touchUpInside" id="bC2-I0-OMG"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="GPI-UL-zGE">
-                                <rect key="frame" x="202" y="594" width="162" height="30"/>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="PTv-ba-UlI">
+                                <rect key="frame" x="204" y="593" width="162" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sliderChanged:" destination="UDO-oZ-8MR" eventType="valueChanged" id="cE2-C9-P8T"/>
+                                </connections>
                             </slider>
                         </subviews>
                         <color key="backgroundColor" red="0.97351334649999999" green="1" blue="0.83392182960000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -311,6 +314,7 @@
                         <outlet property="cinemaButton" destination="e4h-vI-m6e" id="d6z-qD-ghj"/>
                         <outlet property="datePicker" destination="HLO-Vh-Ke4" id="6vH-9A-5E6"/>
                         <outlet property="directorField" destination="Dsh-Re-OHv" id="oNU-57-Ps3"/>
+                        <outlet property="ratingSlider" destination="PTv-ba-UlI" id="mJQ-yj-X3Y"/>
                         <outlet property="titleField" destination="U9s-Jt-HIh" id="Ham-Wc-G3c"/>
                         <outlet property="watchedSwitch" destination="gBX-zP-HMn" id="G1d-el-nCX"/>
                     </connections>
@@ -318,7 +322,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JEM-Bf-Wcj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="j5m-V2-4ia" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1592.8" y="132.68365817091455"/>
+            <point key="canvasLocation" x="1592.753623188406" y="132.06521739130434"/>
         </scene>
         <!--Add View Controller-->
         <scene sceneID="GiJ-rF-17u">
@@ -428,6 +432,9 @@
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="rV9-uA-X9T">
                                 <rect key="frame" x="204" y="600" width="162" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sliderChanged:" destination="Hw5-sx-3Bb" eventType="valueChanged" id="hN1-bG-ACu"/>
+                                </connections>
                             </slider>
                         </subviews>
                         <color key="backgroundColor" red="0.97351334649999999" green="1" blue="0.83392182960000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
