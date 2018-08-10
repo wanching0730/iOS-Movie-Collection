@@ -32,7 +32,7 @@ class EditViewController: UIViewController {
     
     var category: String = ""
     var cinema: String = ""
-    var rating: Int = -1
+    var rating: Int32 = -1
     
     var foundMovie: Movie!
     var selectedMovie: Movie!
@@ -59,7 +59,8 @@ class EditViewController: UIViewController {
     }
     
     @IBAction func sliderChanged(_ sender: UISlider) {
-        rating = lroundf(sender.value)
+        rating = Int32(sender.value)
+        print("slided ratinga: \(rating)")
     }
     
     func setupContext() {
@@ -81,7 +82,8 @@ class EditViewController: UIViewController {
             
             datePicker.setDate(movie.releaseDate!, animated: true)
             
-            ratingSlider.value = Float(movie.rating)
+            ratingSlider.setValue(Float(movie.rating), animated: true) 
+            print("converted rating: \(movie.rating)")
             
             watchedSwitch.isOn = movie.watched
         }

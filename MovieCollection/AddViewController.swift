@@ -30,7 +30,7 @@ class AddViewController: UIViewController {
     
     var category: String = ""
     var cinema: String = ""
-    var rating: Int = -1
+    var rating: Int32 = -1
     
     lazy var dropDowns: [DropDown] = {
         return [
@@ -59,7 +59,7 @@ class AddViewController: UIViewController {
     }
     
     @IBAction func sliderChanged(_ sender: UISlider) {
-        rating = lroundf(sender.value)
+        rating = Int32(sender.value)
         print("rating: \(rating)")
     }
     
