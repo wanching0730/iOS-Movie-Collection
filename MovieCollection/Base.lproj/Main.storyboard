@@ -291,6 +291,10 @@
                                     <action selector="selectCinemaPressed:" destination="UDO-oZ-8MR" eventType="touchUpInside" id="bC2-I0-OMG"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="GPI-UL-zGE">
+                                <rect key="frame" x="202" y="594" width="162" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" red="0.97351334649999999" green="1" blue="0.83392182960000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="UlK-ng-so2"/>
@@ -421,6 +425,10 @@
                                     <action selector="selectCinemaPressed:" destination="Hw5-sx-3Bb" eventType="touchUpInside" id="Chk-dR-a18"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="rV9-uA-X9T">
+                                <rect key="frame" x="204" y="600" width="162" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" red="0.97351334649999999" green="1" blue="0.83392182960000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="de1-zv-4QE"/>
