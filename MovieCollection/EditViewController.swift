@@ -14,6 +14,7 @@ class EditViewController: UIViewController {
     
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var directorField: UITextField!
+    @IBOutlet weak var posterField: UITextField!
     
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var ratingButton: UIButton!
