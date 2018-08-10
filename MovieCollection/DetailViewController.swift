@@ -15,6 +15,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var directorLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var cinemaLabel: UILabel!
     @IBOutlet weak var watchedLabel: UILabel!
     
     @IBOutlet weak var imageView: UIImageView!
@@ -42,6 +43,7 @@ class DetailViewController: UIViewController {
             titleLabel.text = movie.title
             categoryLabel.text = movie.category
             directorLabel.text = movie.director
+            cinemaLabel.text = movie.cinema
             dateLabel.text = "\(dateFormatter.string(from: movie.releaseDate!))"
             ratingLabel.text = "\(movie.rating)"
             

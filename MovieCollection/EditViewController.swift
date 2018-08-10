@@ -16,7 +16,8 @@ class EditViewController: UIViewController {
     @IBOutlet weak var directorField: UITextField!
     
     @IBOutlet weak var categoryButton: UIButton!
-    @IBOutlet weak var ratingButton: UIButton!
+    @IBOutlet weak var cinemaButton: UIButton!
+    //@IBOutlet weak var ratingButton: UIButton!
     
     @IBOutlet weak var watchedSwitch: UISwitch!
     
@@ -26,10 +27,10 @@ class EditViewController: UIViewController {
     var managedContext: NSManagedObjectContext!
     
     let categoryDropDown = DropDown()
-    let ratingDropDown = DropDown()
+    let cinemaDropDown = DropDown()
     
-    var rating: Int = -1
     var category: String = ""
+    var cinema: String = ""
     
     var foundMovie: Movie!
     var selectedMovie: Movie!
@@ -37,7 +38,7 @@ class EditViewController: UIViewController {
     lazy var dropDowns: [DropDown] = {
         return [
             self.categoryDropDown,
-            self.ratingDropDown
+            self.cinemaDropDown
         ]
     }()
     
@@ -51,8 +52,9 @@ class EditViewController: UIViewController {
         categoryDropDown.show()
     }
     
-    @IBAction func selectRatingPressed(_ sender: UIButton) {
-        ratingDropDown.show()
+
+    @IBAction func selectCinemaPressed(_ sender: UIButton) {
+        cinemaDropDown.show()
     }
     
     func setupContext() {
@@ -70,7 +72,7 @@ class EditViewController: UIViewController {
             directorField.text = movie.director
             
             categoryButton.setTitle(movie.category, for: .normal)
-            ratingButton.setTitle("\(movie.rating)", for: .normal)
+            cinemaButton.setTitle(movie.cinema, for: .normal)
             
             datePicker.setDate(movie.releaseDate!, animated: true)
             
@@ -89,8 +91,8 @@ class EditViewController: UIViewController {
                 self.category = item
                 print("Selected category: \(item) at index: \(index)")
             } else {
-                self.rating = Int(item)!
-                print("Selected rating: \(item) at index: \(index)")
+                self.cinema = item
+                print("Selected cinema: \(item) at index: \(index)")
             }
             
         }
@@ -102,10 +104,10 @@ class EditViewController: UIViewController {
         dropDowns.forEach { $0.direction = .bottom }
         
         let categories = ["Action", "Comedy", "Horror", "Romance"]
-        let ratings = ["0", "1", "2", "3", "4", "5"]
+        let cinemas = ["Cheras Selatan", "Cheras Sentral", "Pavillion", "Sunway Pyramid"]
         
         setupDropDown(categoryDropDown, categoryButton, categories)
-        setupDropDown(ratingDropDown, ratingButton, ratings)
+        setupDropDown(cinemaDropDown, cinemaButton, cinemas)
     }
     
     func searchMovie() {
@@ -138,12 +140,10 @@ class EditViewController: UIViewController {
             foundMovie.setValue(category, forKey: "category")
         }
         
-        if rating == -1 {
-            if let rating = Int32(ratingButton.currentTitle!) {
-                foundMovie.setValue(rating, forKey: "rating")
-            }
+        if cinema.isEmpty {
+                foundMovie.setValue(cinemaButton.currentTitle!, forKey: "cinema")
         } else {
-            foundMovie.setValue(Int32(rating), forKey: "rating")
+            foundMovie.setValue(cinema, forKey: "cinema")
         }
         
         do {

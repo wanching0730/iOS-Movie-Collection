@@ -20,21 +20,22 @@ class AddViewController: UIViewController {
     @IBOutlet weak var watchedSwitch: UISwitch!
     
     @IBOutlet weak var categoryButton: UIButton!
-    @IBOutlet weak var ratingButton: UIButton!
+    @IBOutlet weak var cinemaButton: UIButton!
+    //@IBOutlet weak var ratingButton: UIButton!
     
     var appDelegate: AppDelegate!
     var managedContext: NSManagedObjectContext!
     
     let categoryDropDown = DropDown()
-    let ratingDropDown = DropDown()
+    let cinemaDropDown = DropDown()
     
     var category: String = ""
-    var rating: Int = -1
+    var cinema: String = ""
     
     lazy var dropDowns: [DropDown] = {
         return [
             self.categoryDropDown,
-            self.ratingDropDown
+            self.cinemaDropDown
         ]
     }()
     
@@ -53,8 +54,8 @@ class AddViewController: UIViewController {
         categoryDropDown.show()
     }
     
-    @IBAction func selectRatingPressed(_ sender: UIButton) {
-        ratingDropDown.show()
+    @IBAction func selectCinemaPressed(_ sender: UIButton) {
+        cinemaDropDown.show()
     }
     
     func setupContext() {
@@ -77,8 +78,8 @@ class AddViewController: UIViewController {
                 self.category = item
                 print("Selected category: \(item) at index: \(index)")
             } else {
-                self.rating = Int(item)!
-                print("Selected rating: \(item) at index: \(index)")
+                self.cinema = item
+                print("Selected movie: \(item) at index: \(index)")
             }
             
         }
@@ -90,10 +91,10 @@ class AddViewController: UIViewController {
         dropDowns.forEach { $0.direction = .bottom }
         
         let categories = ["Action", "Comedy", "Horror", "Romance"]
-        let ratings = ["0", "1", "2", "3", "4", "5"]
+        let cinemas = ["Cheras Selatan", "Cheras Sentral", "Pavillion", "Sunway Pyramid"]
         
         setupDropDown(categoryDropDown, categoryButton, categories)
-        setupDropDown(ratingDropDown, ratingButton, ratings)
+        setupDropDown(cinemaDropDown, cinemaButton, cinemas)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -105,7 +106,7 @@ class AddViewController: UIViewController {
         movie.setValue(category, forKey: "category")
         movie.setValue(directorField.text!, forKey: "director")
         movie.setValue(datePicker.date, forKey: "releaseDate")
-        movie.setValue(rating, forKey: "rating")
+        movie.setValue(cinema, forKey: "cinema")
         movie.setValue(watchedSwitch.isOn, forKey: "watched")
         
         do {
@@ -117,7 +118,7 @@ class AddViewController: UIViewController {
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if titleField.text!.isEmpty || directorField.text!.isEmpty  || category.isEmpty || rating == -1 {
+        if titleField.text!.isEmpty || directorField.text!.isEmpty  || category.isEmpty || cinema.isEmpty {
             let alertController = UIAlertController (
                 title: "Invalid Submission",
                 message: "Please complete all fields before proceed",

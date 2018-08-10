@@ -173,6 +173,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="categoryLabel" destination="vzQ-fX-HqJ" id="gE1-vM-ebo"/>
+                        <outlet property="cinemaLabel" destination="KW9-rz-DPe" id="3I3-Mn-oBn"/>
                         <outlet property="dateLabel" destination="dIj-GU-bzO" id="2Ow-zf-W2B"/>
                         <outlet property="directorLabel" destination="kvo-Db-Luv" id="WG0-cS-geE"/>
                         <outlet property="imageView" destination="sPl-Vi-0ig" id="her-u1-pf4"/>
@@ -264,14 +265,6 @@
                                     <!--2018-07-31 07:53:18 +0000-->
                                 </date>
                             </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGb-sy-ilR">
-                                <rect key="frame" x="203" y="594" width="91" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Select Rating"/>
-                                <connections>
-                                    <action selector="selectRatingPressed:" destination="UDO-oZ-8MR" eventType="touchUpInside" id="Yrl-za-4E9"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cinema" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ail-5a-ggb">
                                 <rect key="frame" x="50" y="556" width="120" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -279,11 +272,6 @@
                                 <color key="textColor" red="0.50471149209999999" green="0.012343758910000001" blue="0.7550599093" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qkk-bg-lbk">
-                                <rect key="frame" x="204" y="556" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Select cinema"/>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Watched" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcu-5U-zSv">
                                 <rect key="frame" x="50" y="644" width="92" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -295,6 +283,14 @@
                                 <rect key="frame" x="201" y="639" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4h-vI-m6e">
+                                <rect key="frame" x="201" y="551" width="107" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Select Cinema"/>
+                                <connections>
+                                    <action selector="selectCinemaPressed:" destination="UDO-oZ-8MR" eventType="touchUpInside" id="bC2-I0-OMG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.97351334649999999" green="1" blue="0.83392182960000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="UlK-ng-so2"/>
@@ -308,9 +304,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="categoryButton" destination="s6t-RE-JHI" id="V3H-G8-bSm"/>
+                        <outlet property="cinemaButton" destination="e4h-vI-m6e" id="d6z-qD-ghj"/>
                         <outlet property="datePicker" destination="HLO-Vh-Ke4" id="6vH-9A-5E6"/>
                         <outlet property="directorField" destination="Dsh-Re-OHv" id="oNU-57-Ps3"/>
-                        <outlet property="ratingButton" destination="xGb-sy-ilR" id="Scp-TX-JvT"/>
                         <outlet property="titleField" destination="U9s-Jt-HIh" id="Ham-Wc-G3c"/>
                         <outlet property="watchedSwitch" destination="gBX-zP-HMn" id="G1d-el-nCX"/>
                     </connections>
@@ -417,17 +413,12 @@
                                 <color key="textColor" red="0.50471149209999999" green="0.012343758910000001" blue="0.7550599093" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vpn-HK-TAp">
-                                <rect key="frame" x="204" y="552" width="97" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVe-UL-9tE">
+                                <rect key="frame" x="203" y="552" width="107" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Select cinema"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFH-J4-GM2">
-                                <rect key="frame" x="204" y="601" width="91" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Select Rating"/>
+                                <state key="normal" title="Select Cinema"/>
                                 <connections>
-                                    <action selector="selectRatingPressed:" destination="Hw5-sx-3Bb" eventType="touchUpInside" id="VQp-15-jar"/>
+                                    <action selector="selectCinemaPressed:" destination="Hw5-sx-3Bb" eventType="touchUpInside" id="Chk-dR-a18"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -443,9 +434,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="categoryButton" destination="HXR-N6-faf" id="GSE-8f-uNZ"/>
+                        <outlet property="cinemaButton" destination="bVe-UL-9tE" id="rfI-sO-cp8"/>
                         <outlet property="datePicker" destination="qTN-zc-ZIS" id="XYw-DR-JGZ"/>
                         <outlet property="directorField" destination="Unv-FR-XnH" id="HcN-y9-Agl"/>
-                        <outlet property="ratingButton" destination="bFH-J4-GM2" id="SHA-Lo-87O"/>
                         <outlet property="titleField" destination="NhR-cV-Srd" id="pri-gj-pSi"/>
                         <outlet property="watchedSwitch" destination="f5o-9c-1Yi" id="DIW-Ru-EtJ"/>
                     </connections>
