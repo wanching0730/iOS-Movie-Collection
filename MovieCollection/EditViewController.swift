@@ -160,4 +160,27 @@ class EditViewController: UIViewController {
         selectedMovie = foundMovie
     }
     
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if titleField.text!.isEmpty || directorField.text!.isEmpty  {
+            let alertController = UIAlertController (
+                title: "Invalid Submission",
+                message: "Please complete all fields before proceed",
+                preferredStyle: UIAlertControllerStyle.alert
+            )
+            
+            let cancelAction = UIAlertAction (
+                title: "Cancel",
+                style: UIAlertActionStyle.cancel,
+                handler: nil
+            )
+            
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+            return false
+        } else {
+            return true
+        }
+    }
+    
 }
