@@ -14,7 +14,6 @@ class EditViewController: UIViewController {
     
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var directorField: UITextField!
-    @IBOutlet weak var posterField: UITextField!
     
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var ratingButton: UIButton!
@@ -69,7 +68,6 @@ class EditViewController: UIViewController {
         if let movie = selectedMovie {
             titleField.text = movie.title
             directorField.text = movie.director
-            posterField.text = movie.posterLink
             
             categoryButton.setTitle(movie.category, for: .normal)
             ratingButton.setTitle("\(movie.rating)", for: .normal)
@@ -131,7 +129,6 @@ class EditViewController: UIViewController {
     func updateDatabase() {
         foundMovie.setValue(titleField.text!, forKey: "title")
         foundMovie.setValue(directorField.text!, forKey: "director")
-        foundMovie.setValue(posterField.text!, forKey: "posterLink")
         foundMovie.setValue(datePicker.date, forKey: "releaseDate")
         foundMovie.setValue(watchedSwitch.isOn, forKey: "watched")
         

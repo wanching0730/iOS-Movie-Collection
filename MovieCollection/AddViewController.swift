@@ -14,7 +14,6 @@ class AddViewController: UIViewController {
 
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var directorField: UITextField!
-    @IBOutlet weak var posterField: UITextField!
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
@@ -105,7 +104,6 @@ class AddViewController: UIViewController {
         movie.setValue(titleField.text!, forKey: "title")
         movie.setValue(category, forKey: "category")
         movie.setValue(directorField.text!, forKey: "director")
-        movie.setValue(posterField.text!, forKey: "posterLink")
         movie.setValue(datePicker.date, forKey: "releaseDate")
         movie.setValue(rating, forKey: "rating")
         movie.setValue(watchedSwitch.isOn, forKey: "watched")

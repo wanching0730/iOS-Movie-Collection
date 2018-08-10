@@ -30,7 +30,7 @@ class DetailViewController: UIViewController {
         setUpInterface()
         
         print("Begin of code")
-        if let url = URL(string: "https://dx35vtwkllhj9.cloudfront.net/paramountpictures/missionimpossible-fallout/images/regions/us/onesheet.jpg") {
+        if let url = URL(string: "https://giornaledilecco.it/media/2018/07/filmes-de-empresas-e-empresarios-de-sucesso.jpg") {
             imageView.contentMode = .scaleAspectFit
             downloadImage(url: url)
         }
