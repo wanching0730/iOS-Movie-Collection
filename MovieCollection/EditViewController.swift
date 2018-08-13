@@ -10,7 +10,7 @@ import UIKit
 import DropDown
 import CoreData
 
-class EditViewController: UIViewController {
+class EditViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var directorField: UITextField!
@@ -45,9 +45,19 @@ class EditViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
+        showKeyBoard()
         setupContext()
         setupDropDowns()
         updateUI()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        dismissKeyboard()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        dismissKeyboard()
     }
     
     @IBAction func selectCategoryPressed(_ sender: UIButton) {
@@ -61,6 +71,19 @@ class EditViewController: UIViewController {
     @IBAction func sliderChanged(_ sender: UISlider) {
         rating = Int32(sender.value)
         print("slided ratinga: \(rating)")
+    }
+    
+    func showKeyBoard() {
+        titleField.delegate = self as UITextFieldDelegate
+        directorField.delegate = self as UITextFieldDelegate
+        
+        titleField.becomeFirstResponder()
+        directorField.becomeFirstResponder()
+    }
+    
+    func dismissKeyboard() {
+        titleField.resignFirstResponder()
+        directorField.resignFirstResponder()
     }
     
     func setupContext() {

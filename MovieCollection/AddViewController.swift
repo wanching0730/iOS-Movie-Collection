@@ -40,7 +40,8 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     }()
     
     override func viewDidLoad() {
-        setupTextField()
+        showKeyBoard()
+        
         setupContext()
         setupDropDowns()
         
@@ -51,12 +52,12 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        titleField.resignFirstResponder()
+        dismissKeyboard()
         return true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        titleField.resignFirstResponder()
+        dismissKeyboard()
     }
     
     @IBAction func selectCategoryPressed(_ sender: UIButton) {
@@ -72,12 +73,17 @@ class AddViewController: UIViewController, UITextFieldDelegate {
         print("rating: \(rating)")
     }
     
-    func setupTextField() {
+    func showKeyBoard() {
         titleField.delegate = self as UITextFieldDelegate
         directorField.delegate = self as UITextFieldDelegate
         
         titleField.becomeFirstResponder()
         directorField.becomeFirstResponder()
+    }
+    
+    func dismissKeyboard() {
+        titleField.resignFirstResponder()
+        directorField.resignFirstResponder()
     }
     
     func setupContext() {
