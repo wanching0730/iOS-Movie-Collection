@@ -10,7 +10,7 @@ import UIKit
 import DropDown
 import CoreData
 
-class AddViewController: UIViewController {
+class AddViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var directorField: UITextField!
@@ -40,14 +40,23 @@ class AddViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
+        setupTextField()
         setupContext()
+        setupDropDowns()
         
         let now = Date()
         datePicker.setDate(now, animated: true)
         
         watchedSwitch.setOn(false, animated: true)
-        
-        setupDropDowns()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        titleField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        titleField.resignFirstResponder()
     }
     
     @IBAction func selectCategoryPressed(_ sender: UIButton) {
@@ -61,6 +70,14 @@ class AddViewController: UIViewController {
     @IBAction func sliderChanged(_ sender: UISlider) {
         rating = Int32(sender.value)
         print("rating: \(rating)")
+    }
+    
+    func setupTextField() {
+        titleField.delegate = self as UITextFieldDelegate
+        directorField.delegate = self as UITextFieldDelegate
+        
+        titleField.becomeFirstResponder()
+        directorField.becomeFirstResponder()
     }
     
     func setupContext() {
