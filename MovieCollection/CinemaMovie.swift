@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Testing purpose
 class CinemaMovie {
     var id: UUID
     var title: String
