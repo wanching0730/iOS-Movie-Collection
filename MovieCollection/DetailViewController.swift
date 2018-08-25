@@ -30,12 +30,10 @@ class DetailViewController: UIViewController {
         
         setUpInterface()
         
-        print("Begin of code")
         if let url = URL(string: "https://giornaledilecco.it/media/2018/07/filmes-de-empresas-e-empresarios-de-sucesso.jpg") {
             imageView.contentMode = .scaleAspectFit
             downloadImage(url: url)
         }
-        print("End of code. The image will continue downloading in the background and it will be loaded when it ends.")
     }
     
     func setUpInterface() {

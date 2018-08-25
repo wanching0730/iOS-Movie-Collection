@@ -24,7 +24,6 @@ class MasterTableViewController: UITableViewController {
         fetchData()
         
         navigationItem.leftBarButtonItem = editButtonItem
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,6 +56,7 @@ class MasterTableViewController: UITableViewController {
         cell.detailTextLabel?.text = movie.category
         cell.accessoryType = movie.watched ? .checkmark : .none
         
+        // Create the list view with gradient colour (from dark to light)
         if let colour = UIColor(hexString: "#ff7373")?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(movies.count)) {
             cell.backgroundColor = colour
             cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
@@ -101,6 +101,7 @@ class MasterTableViewController: UITableViewController {
         return true
     }
     
+    // Set up connection to core data
     func setupContext() {
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
             print("Status: Error in app")
@@ -132,6 +133,7 @@ class MasterTableViewController: UITableViewController {
             }
         }
         
+        // To ensure that the list of movies is always updated after each change
         tableView.reloadData()
     }
     

@@ -64,6 +64,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
         categoryDropDown.show()
     }
     
+    // Show dropdown
     @IBAction func selectCinemaPressed(_ sender: UIButton) {
         cinemaDropDown.show()
     }

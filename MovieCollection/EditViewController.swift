@@ -60,6 +60,7 @@ class EditViewController: UIViewController, UITextFieldDelegate {
         dismissKeyboard()
     }
     
+    // Show dropdown
     @IBAction func selectCategoryPressed(_ sender: UIButton) {
         categoryDropDown.show()
     }
@@ -86,6 +87,7 @@ class EditViewController: UIViewController, UITextFieldDelegate {
         directorField.resignFirstResponder()
     }
     
+    // set up connection to core data
     func setupContext() {
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
             print("Status: Error in app")
@@ -95,6 +97,7 @@ class EditViewController: UIViewController, UITextFieldDelegate {
         managedContext = appDelegate.persistentContainer.viewContext
     }
     
+    // Update UI after modification is done
     func updateUI() {
         if let movie = selectedMovie {
             titleField.text = movie.title
